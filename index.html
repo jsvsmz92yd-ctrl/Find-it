@@ -1,0 +1,2393 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Find-It</title>
+<meta name="theme-color" content="#103fbe" />
+<meta name="application-name" content="Find-It" />
+<meta name="format-detection" content="telephone=no" />
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Find-It">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="data:image/svg+xml;utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20180%20180'%3E%0A%3Cdefs%3E%0A%3ClinearGradient%20id='bg'%20x1='0'%20y1='0'%20x2='1'%20y2='1'%3E%0A%3Cstop%20offset='0'%20stop-color='%234fd6ff'/%3E%0A%3Cstop%20offset='0.45'%20stop-color='%232258d7'/%3E%0A%3Cstop%20offset='1'%20stop-color='%230a155f'/%3E%0A%3C/linearGradient%3E%0A%3ClinearGradient%20id='glass'%20x1='0'%20y1='0'%20x2='0'%20y2='1'%3E%0A%3Cstop%20offset='0'%20stop-color='rgba(255,255,255,.22)'/%3E%0A%3Cstop%20offset='1'%20stop-color='rgba(255,255,255,0)'/%3E%0A%3C/linearGradient%3E%0A%3Cfilter%20id='shadow'%20x='-20%25'%20y='-20%25'%20width='140%25'%20height='140%25'%3E%0A%3CfeDropShadow%20dx='0'%20dy='6'%20stdDeviation='8'%20flood-color='rgba(0,0,0,.28)'/%3E%0A%3C/filter%3E%0A%3C/defs%3E%0A%3Crect%20width='180'%20height='180'%20rx='40'%20fill='url(%23bg)'/%3E%0A%3Crect%20x='1'%20y='1'%20width='178'%20height='178'%20rx='39'%20fill='url(%23glass)'%20opacity='.35'/%3E%0A%3Cg%20filter='url(%23shadow)'%3E%0A%3Cpath%20d='M92%2034c-24%200-43%2018-43%2041%200%2026%2029%2047%2039%2072%202%205%209%205%2011%200%2010-25%2039-46%2039-72%200-23-19-41-46-41zm0%2057c-9%200-17-7-17-16s8-16%2017-16%2017%207%2017%2016-8%2016-17%2016z'%20fill='white'/%3E%0A%3Ccircle%20cx='118'%20cy='118'%20r='31'%20fill='none'%20stroke='white'%20stroke-width='10'/%3E%0A%3Cline%20x1='140'%20y1='140'%20x2='158'%20y2='158'%20stroke='white'%20stroke-width='10'%20stroke-linecap='round'/%3E%0A%3C/g%3E%0A%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml;utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20180%20180'%3E%0A%3Cdefs%3E%0A%3ClinearGradient%20id='bg'%20x1='0'%20y1='0'%20x2='1'%20y2='1'%3E%0A%3Cstop%20offset='0'%20stop-color='%234fd6ff'/%3E%0A%3Cstop%20offset='0.45'%20stop-color='%232258d7'/%3E%0A%3Cstop%20offset='1'%20stop-color='%230a155f'/%3E%0A%3C/linearGradient%3E%0A%3ClinearGradient%20id='glass'%20x1='0'%20y1='0'%20x2='0'%20y2='1'%3E%0A%3Cstop%20offset='0'%20stop-color='rgba(255,255,255,.22)'/%3E%0A%3Cstop%20offset='1'%20stop-color='rgba(255,255,255,0)'/%3E%0A%3C/linearGradient%3E%0A%3Cfilter%20id='shadow'%20x='-20%25'%20y='-20%25'%20width='140%25'%20height='140%25'%3E%0A%3CfeDropShadow%20dx='0'%20dy='6'%20stdDeviation='8'%20flood-color='rgba(0,0,0,.28)'/%3E%0A%3C/filter%3E%0A%3C/defs%3E%0A%3Crect%20width='180'%20height='180'%20rx='40'%20fill='url(%23bg)'/%3E%0A%3Crect%20x='1'%20y='1'%20width='178'%20height='178'%20rx='39'%20fill='url(%23glass)'%20opacity='.35'/%3E%0A%3Cg%20filter='url(%23shadow)'%3E%0A%3Cpath%20d='M92%2034c-24%200-43%2018-43%2041%200%2026%2029%2047%2039%2072%202%205%209%205%2011%200%2010-25%2039-46%2039-72%200-23-19-41-46-41zm0%2057c-9%200-17-7-17-16s8-16%2017-16%2017%207%2017%2016-8%2016-17%2016z'%20fill='white'/%3E%0A%3Ccircle%20cx='118'%20cy='118'%20r='31'%20fill='none'%20stroke='white'%20stroke-width='10'/%3E%0A%3Cline%20x1='140'%20y1='140'%20x2='158'%20y2='158'%20stroke='white'%20stroke-width='10'%20stroke-linecap='round'/%3E%0A%3C/g%3E%0A%3C/svg%3E">
+
+
+<style>
+:root{
+  --text:#f7f8fc;
+  --muted:#dbe4f3;
+  --glass:rgba(11,18,30,.28);
+  --glass2:rgba(11,18,30,.38);
+  --stroke:rgba(255,255,255,.14);
+  --green:#46ef7d;
+  --greenSoft:rgba(70,239,125,.18);
+  --greenGlow:rgba(70,239,125,.30);
+  --danger:rgba(138,34,52,.52);
+  --gold:#ffd36b;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{
+  margin:0;
+  overscroll-behavior:none;
+  -webkit-overflow-scrolling:touch;
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  background:#08101c;
+}
+body{
+  margin:0;
+  overscroll-behavior:none;
+  -webkit-overflow-scrolling:touch;
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(74,214,255,.20), transparent 24%),
+    radial-gradient(circle at 82% 14%, rgba(134,92,255,.16), transparent 28%),
+    radial-gradient(circle at 48% 62%, rgba(39,224,160,.12), transparent 26%),
+    linear-gradient(160deg, #08101c 0%, #0b1730 42%, #111b3d 100%);
+  background-attachment:fixed;
+}
+body::before{
+  content:'';
+  position:fixed;
+  inset:-12% -10% auto -10%;
+  height:58vh;
+  pointer-events:none;
+  z-index:0;
+  background:
+    radial-gradient(circle at 12% 20%, rgba(79,214,255,.28), transparent 24%),
+    radial-gradient(circle at 86% 18%, rgba(255,126,179,.18), transparent 22%),
+    radial-gradient(circle at 46% 78%, rgba(70,239,125,.14), transparent 24%);
+  filter:blur(22px) saturate(115%);
+  opacity:.95;
+  animation:auroraShift 18s ease-in-out infinite alternate;
+}
+body::after{
+  content:'';
+  position:fixed;
+  inset:auto -18% -8% -18%;
+  height:42vh;
+  pointer-events:none;
+  z-index:0;
+  background:
+    radial-gradient(circle at 20% 50%, rgba(69,141,255,.16), transparent 24%),
+    radial-gradient(circle at 75% 28%, rgba(255,211,107,.14), transparent 22%),
+    linear-gradient(180deg, rgba(8,16,28,0), rgba(8,16,28,.56));
+  filter:blur(26px);
+  opacity:.9;
+}
+a{color:inherit;text-decoration:none}
+button,select,input{font:inherit}
+.app{
+  position:relative;
+  z-index:1;
+  isolation:isolate;
+  width:min(430px,100%);
+  min-height:100vh;
+  margin:0 auto;
+  padding:12px 14px calc(28px + env(safe-area-inset-bottom));
+}
+.statusbar{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:10px;font-size:16px;font-weight:900;
+}
+.island{
+  width:168px;height:38px;border-radius:999px;background:#030508;
+  display:flex;align-items:center;justify-content:space-between;padding:4px 12px;
+  box-shadow:0 10px 24px rgba(0,0,0,.22);
+}
+.avatar{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#efc18f,#875634)}
+.top{
+  display:grid;grid-template-columns:46px 1fr 46px;gap:12px;align-items:center;
+  margin-bottom:10px;position:relative;z-index:2;
+}
+.circle{
+  width:46px;height:46px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(9,14,24,.44);
+  color:#fff;display:flex;align-items:center;justify-content:center;
+  font-size:22px;cursor:pointer;
+  backdrop-filter:blur(6px) saturate(120%);
+  -webkit-backdrop-filter:blur(6px) saturate(120%);
+  box-shadow:0 10px 22px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.06);
+}
+.titleWrap{text-align:center}
+.title{
+  margin:0;font-size:22px;line-height:1.02;font-weight:900;letter-spacing:-.03em;
+  text-shadow:0 4px 18px rgba(0,0,0,.26);
+}
+.title small{font-size:15px;opacity:.76}
+.areaPill{
+  display:inline-flex;align-items:center;
+  margin-top:6px;padding:6px 12px;border-radius:999px;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);
+  font-weight:800;font-size:13px;
+  backdrop-filter:blur(5px) saturate(118%);
+  -webkit-backdrop-filter:blur(5px) saturate(118%);
+  box-shadow:0 6px 16px rgba(0,0,0,.10);
+}
+.searchrow{
+  display:flex;gap:8px;align-items:center;margin-bottom:8px;
+}
+.locbar{
+  flex:1;min-width:0;height:38px;border-radius:999px;
+  background:rgba(10,16,24,.42);
+  border:1px solid rgba(255,255,255,.12);
+  display:flex;align-items:center;gap:8px;padding:0 12px;
+  backdrop-filter:blur(6px) saturate(120%);
+  -webkit-backdrop-filter:blur(6px) saturate(120%);
+  box-shadow:0 8px 18px rgba(0,0,0,.12);
+}
+.locbar .main{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:800;font-size:15px}
+.locbar .sub{color:var(--muted);font-size:13px;white-space:nowrap}
+.searchbtn{
+  height:38px;padding:0 16px;border-radius:999px;border:none;
+  background:linear-gradient(180deg,#ffffff,#eef3fb);
+  color:#101319;font-weight:900;font-size:15px;
+  box-shadow:0 8px 18px rgba(0,0,0,.12);cursor:pointer;
+}
+.filters{
+  display:flex;gap:8px;align-items:center;margin-bottom:10px;
+}
+.filter{
+  height:34px;padding:0 12px;border-radius:999px;border:1px solid rgba(255,255,255,.12);
+  background:rgba(10,16,24,.40);color:#fff;font-weight:800;font-size:15px;
+  backdrop-filter:blur(5px) saturate(118%);
+  -webkit-backdrop-filter:blur(5px) saturate(118%);
+  box-shadow:0 6px 14px rgba(0,0,0,.10);
+}
+.summary{
+  display:flex;align-items:center;gap:8px;font-size:15px;font-weight:900;margin:0 2px 10px;
+}
+.dot{
+  width:12px;height:12px;border-radius:50%;background:var(--green);box-shadow:0 0 16px var(--greenGlow);
+}
+.list{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.card{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:10px 12px;
+  border-radius:18px;
+  cursor:pointer;
+  background:rgba(10,16,24,.42);
+  border:1px solid rgba(255,255,255,.16);
+  backdrop-filter:blur(7px) saturate(122%);
+  -webkit-backdrop-filter:blur(7px) saturate(122%);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.02) inset,
+    0 8px 24px rgba(0,0,0,.14),
+    0 0 18px rgba(70,239,125,.06);
+  transform:translateY(0);
+}
+.card.best{
+  border-color:rgba(255,216,122,.34);
+  box-shadow:
+    0 0 0 1px rgba(255,211,107,.08) inset,
+    0 10px 26px rgba(0,0,0,.18),
+    0 0 24px rgba(255,211,107,.12);
+}
+.logo{
+  width:62px;height:62px;border-radius:14px;
+  background:linear-gradient(180deg,#16502b,#10361d);
+  display:flex;align-items:center;justify-content:center;
+  font-size:28px;flex:0 0 auto;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.07);
+}
+.info{flex:1;min-width:0}
+.row1{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:3px}
+.name{
+  font-size:17px;font-weight:900;letter-spacing:-.02em;
+}
+.badge{
+  padding:4px 9px;border-radius:999px;background:var(--greenSoft);border:1px solid rgba(70,239,125,.20);
+  color:#c8ffd9;font-size:12px;font-weight:900;
+  box-shadow:0 0 10px rgba(70,239,125,.08);
+}
+.badge.best{
+  background:linear-gradient(135deg, rgba(255,211,107,.26), rgba(255,184,77,.20));
+  border:1px solid rgba(255,211,107,.28);
+  color:#ffe5a3;
+  box-shadow:0 0 10px rgba(255,211,107,.10);
+}
+.badge.warn{
+  background:rgba(255,190,90,.16);
+  border:1px solid rgba(255,190,90,.18);
+  color:#ffe0a0;
+}
+.badge.local{
+  background:rgba(120,190,255,.14);
+  border:1px solid rgba(120,190,255,.18);
+  color:#b7ddff;
+}
+.badge.hot{
+  background:linear-gradient(135deg, rgba(255,124,124,.22), rgba(255,176,77,.20));
+  border:1px solid rgba(255,168,100,.26);
+  color:#ffd8b5;
+  box-shadow:0 0 12px rgba(255,145,95,.12);
+}
+
+.badge.partner{
+  background:linear-gradient(135deg, rgba(100,185,255,.24), rgba(114,121,255,.20));
+  border:1px solid rgba(126,168,255,.30);
+  color:#d9e8ff;
+  box-shadow:0 0 12px rgba(114,156,255,.12);
+}
+.card.partner{
+  border-color:rgba(126,168,255,.28);
+  box-shadow:
+    0 0 0 1px rgba(126,168,255,.08) inset,
+    0 10px 26px rgba(0,0,0,.18),
+    0 0 24px rgba(114,156,255,.10);
+}
+.openLine{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex-wrap:wrap;
+  margin:4px 0 6px;
+}
+.badge.open{
+  background:rgba(70,239,125,.16);
+  border:1px solid rgba(70,239,125,.24);
+  color:#c8ffd9;
+}
+.openPulse{
+  width:10px;height:10px;border-radius:50%;background:var(--green);
+  box-shadow:0 0 0 0 rgba(70,239,125,.45);animation:pulse 1.8s infinite;
+}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(70,239,125,.45)}70%{box-shadow:0 0 0 8px rgba(70,239,125,0)}100%{box-shadow:0 0 0 0 rgba(70,239,125,0)}}
+.openText{font-size:13px;color:#e9fff0;font-weight:800}
+.sectionTitle{display:flex;align-items:center;gap:8px;margin:2px 2px 8px;font-size:14px;font-weight:900;color:#eef3fb}
+.miniDot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 12px rgba(70,239,125,.28)}
+.sectionHint{margin:0 2px 10px;color:#d9e2ef;font-size:12px;line-height:1.4}
+.sectionHint.strong{font-weight:800;color:#eef8f1}
+.adCard{display:flex;gap:12px;align-items:flex-start;margin:0 2px 12px;padding:12px;border-radius:16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);backdrop-filter:blur(10px)}
+.adIcon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(110,140,255,.16);font-size:22px}
+.adBody{flex:1}
+.adLabel{font-size:11px;font-weight:900;letter-spacing:.04em;text-transform:uppercase;color:#cfd8ff;margin-bottom:4px}
+.adTitle{font-size:15px;font-weight:900;margin-bottom:4px}
+.adText{font-size:13px;line-height:1.42;color:#d9e2ef}
+.adCta{margin-top:8px;font-size:12px;font-weight:900;color:#e4ecff}
+.addr.missing,.hours.missing{color:#c8cfdb;opacity:.82}
+.addr,.hours{
+  font-size:13px;color:#eef2f9;line-height:1.26;
+}
+.chev{font-size:26px;color:#eef3fb;opacity:.84}
+.empty{
+  padding:14px 16px;border-radius:16px;background:rgba(8,12,20,.34);border:1px solid rgba(255,255,255,.10);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);font-weight:800;line-height:1.4;color:#eef3fb;
+}
+.detail{
+  position:fixed;inset:0;background:rgba(3,7,12,.58);display:none;align-items:flex-end;justify-content:center;z-index:50;
+}
+.detail.show{display:flex}
+.panel{
+  width:min(430px,100%);max-height:88vh;overflow:hidden;background:rgba(8,12,20,.88);
+  border:1px solid rgba(255,255,255,.10);border-bottom:none;border-top-left-radius:22px;border-top-right-radius:22px;
+  backdrop-filter:blur(18px) saturate(155%);-webkit-backdrop-filter:blur(18px) saturate(155%);
+  box-shadow:0 -14px 32px rgba(0,0,0,.24);
+}
+.handlewrap{display:flex;justify-content:center;padding:8px 0 6px}
+.handle{width:52px;height:5px;border-radius:999px;background:rgba(255,255,255,.28)}
+.head{padding:8px 14px 12px;border-bottom:1px solid rgba(255,255,255,.08)}
+.headtop{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.detailtitle{font-size:24px;font-weight:900;line-height:1.04}
+.close{width:38px;height:38px;border:none;border-radius:50%;background:rgba(255,255,255,.08);color:#fff;font-size:24px;cursor:pointer}
+.meta{margin-top:8px;color:#dce4ef;font-size:14px;line-height:1.4}
+.body2{padding:12px 14px 20px;overflow:auto;max-height:70vh}
+.box{
+  padding:12px;border-radius:16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);margin-bottom:10px;
+}
+.boxtitle{font-size:17px;font-weight:900;margin-bottom:8px}
+.stat{font-size:15px;font-weight:800;margin-bottom:6px}
+.note,.line{font-size:14px;color:#d7dfec;line-height:1.42}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.action{
+  min-height:40px;padding:0 14px;border-radius:999px;border:none;background:#f1f3f6;color:#101216;font-weight:900;font-size:14px;
+  display:inline-flex;align-items:center;justify-content:center;cursor:pointer;
+}
+.action.secondary{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.10)}
+.menu{
+  position:fixed;inset:0;background:rgba(3,7,12,.56);display:none;align-items:flex-start;justify-content:center;z-index:60;padding:16px 14px;
+}
+.menu.show{display:flex}
+.menuPanel{
+  width:min(430px,100%);background:rgba(8,12,20,.88);border:1px solid rgba(255,255,255,.10);border-radius:22px;padding:16px;
+  backdrop-filter:blur(18px) saturate(155%);-webkit-backdrop-filter:blur(18px) saturate(155%);
+  box-shadow:0 18px 40px rgba(0,0,0,.28);
+}
+.menuTitle{font-size:20px;font-weight:900;margin-bottom:12px}
+.menuGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.menuChip{
+  min-height:68px;border-radius:18px;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.05);color:#fff;font-size:16px;font-weight:900;cursor:pointer;
+}
+.small{font-size:13px;color:#d2daeb;line-height:1.42;margin-top:10px}
+.helpcard,.helpCard{
+  margin:0 2px 10px;
+  padding:12px 14px;
+  border-radius:14px;
+  background:rgba(10,16,24,.36);
+  border:1px solid rgba(255,255,255,.10);
+  backdrop-filter:blur(12px) saturate(132%);
+  -webkit-backdrop-filter:blur(12px) saturate(132%);
+  box-shadow:0 10px 22px rgba(0,0,0,.10);
+}
+.helpTitle{font-size:14px;font-weight:900;margin-bottom:6px}
+.helpText{font-size:13px;line-height:1.42;color:#d9e2ef}
+.smokeActions{display:flex;gap:8px;flex-wrap:wrap;margin:0 2px 10px}
+.smokeBtn{
+  min-height:34px;padding:0 12px;border-radius:999px;border:1px solid rgba(255,255,255,.12);
+  background:rgba(8,12,20,.34);color:#fff;font-weight:800;font-size:14px;
+  backdrop-filter:blur(5px) saturate(118%);-webkit-backdrop-filter:blur(5px) saturate(118%);
+}
+.smokeBtn.secondary{background:rgba(255,255,255,.08)}
+.quickSections{display:flex;flex-direction:column;gap:10px;margin:0 2px 10px}
+.quickBlock{
+  padding:10px 12px;border-radius:14px;background:rgba(10,16,24,.36);border:1px solid rgba(255,255,255,.10);
+  backdrop-filter:blur(12px) saturate(128%);-webkit-backdrop-filter:blur(12px) saturate(128%);
+  box-shadow:0 8px 20px rgba(0,0,0,.10);
+}
+.quickTitle{font-size:14px;font-weight:900;margin-bottom:8px}
+.quickList{display:flex;flex-wrap:wrap;gap:8px}
+.quickChip{
+  min-height:30px;padding:0 10px;border-radius:999px;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.06);color:#fff;font-size:12px;font-weight:800;display:inline-flex;align-items:center;cursor:pointer
+}
+.quickEmpty{font-size:12px;color:#d3dceb}
+.skeleton{
+  height:88px;border-radius:18px;background:linear-gradient(90deg, rgba(255,255,255,.06), rgba(255,255,255,.12), rgba(255,255,255,.06));
+  background-size:200% 100%;animation: shimmer 1.4s infinite;border:1px solid rgba(255,255,255,.08)
+}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+@keyframes auroraShift{
+  0%{transform:translate3d(0,0,0) scale(1);opacity:.88}
+  50%{transform:translate3d(0,-10px,0) scale(1.04);opacity:1}
+  100%{transform:translate3d(0,8px,0) scale(1.08);opacity:.92}
+}
+.mapBox{height:150px;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.08);margin-bottom:10px;background:#111}
+.mapBox iframe{width:100%;height:100%;border:0}
+.card,.circle,.searchbtn,.filter,.action,.menuChip,.quickChip,.smokeBtn{
+  transition:transform .18s ease, opacity .18s ease, box-shadow .24s ease, border-color .24s ease;
+}
+.card:hover{
+  border-color:rgba(140,255,189,.24);
+  box-shadow:0 0 0 1px rgba(255,255,255,.02) inset,0 12px 28px rgba(0,0,0,.18),0 0 22px rgba(70,239,125,.10);
+}
+.card:active,.circle:active,.searchbtn:active,.action:active,.menuChip:active,.quickChip:active,.smokeBtn:active{
+  transform:scale(.98);
+  opacity:.94;
+}
+.detail,.menu{transition:opacity .18s ease}
+.addr strong,.hours strong{font-weight:900}
+.modeBtn.active{
+  background:#f1f3f6 !important;
+  color:#101216 !important;
+  border-color:transparent !important;
+}
+.modeActions{margin-bottom:4px}
+@media (max-width:400px){
+  .title{font-size:22px}
+  .name{font-size:17px}
+  .logo{width:62px;height:62px}
+}
+
+
+.bg-parallax{
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 14% 24%, rgba(94,231,255,.16), transparent 20%),
+    radial-gradient(circle at 84% 16%, rgba(169,106,255,.14), transparent 20%),
+    radial-gradient(circle at 50% 52%, rgba(87,255,186,.10), transparent 26%),
+    linear-gradient(180deg, rgba(5,9,16,.06) 0%, rgba(5,9,16,.18) 38%, rgba(5,9,16,.56) 100%);
+  filter:saturate(118%) contrast(106%);
+  opacity:.96;
+  will-change: transform;
+}
+.app{
+  background: transparent !important;
+}
+
+
+.splashScreen{
+  position:fixed;inset:0;z-index:200;background:linear-gradient(180deg,#0d2a86,#103fbe 55%,#0a155f);
+  display:flex;align-items:center;justify-content:center;opacity:1;transition:opacity .35s ease,visibility .35s ease;
+}
+.splashScreen.hide{opacity:0;visibility:hidden}
+.splashInner{display:flex;flex-direction:column;align-items:center;gap:20px;transform:translateY(-2vh)}
+.splashIconWrap{width:116px;height:116px;border-radius:28px;overflow:hidden;box-shadow:0 16px 36px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,255,255,.18)}
+.splashIconWrap img{width:100%;height:100%;display:block}
+.splashTitle{font-size:28px;font-weight:900;letter-spacing:-.03em;color:#fff;text-shadow:0 4px 16px rgba(0,0,0,.2)}
+body.splash-lock{overflow:hidden}
+
+</style>
+
+</head>
+<body class="splash-lock">
+<div id="splashScreen" class="splashScreen" aria-hidden="true">
+  <div class="splashInner">
+    <div class="splashIconWrap"><img src="data:image/svg+xml;utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20180%20180'%3E%0A%3Cdefs%3E%0A%3ClinearGradient%20id='bg'%20x1='0'%20y1='0'%20x2='1'%20y2='1'%3E%0A%3Cstop%20offset='0'%20stop-color='%234fd6ff'/%3E%0A%3Cstop%20offset='0.45'%20stop-color='%232258d7'/%3E%0A%3Cstop%20offset='1'%20stop-color='%230a155f'/%3E%0A%3C/linearGradient%3E%0A%3ClinearGradient%20id='glass'%20x1='0'%20y1='0'%20x2='0'%20y2='1'%3E%0A%3Cstop%20offset='0'%20stop-color='rgba(255,255,255,.22)'/%3E%0A%3Cstop%20offset='1'%20stop-color='rgba(255,255,255,0)'/%3E%0A%3C/linearGradient%3E%0A%3Cfilter%20id='shadow'%20x='-20%25'%20y='-20%25'%20width='140%25'%20height='140%25'%3E%0A%3CfeDropShadow%20dx='0'%20dy='6'%20stdDeviation='8'%20flood-color='rgba(0,0,0,.28)'/%3E%0A%3C/filter%3E%0A%3C/defs%3E%0A%3Crect%20width='180'%20height='180'%20rx='40'%20fill='url(%23bg)'/%3E%0A%3Crect%20x='1'%20y='1'%20width='178'%20height='178'%20rx='39'%20fill='url(%23glass)'%20opacity='.35'/%3E%0A%3Cg%20filter='url(%23shadow)'%3E%0A%3Cpath%20d='M92%2034c-24%200-43%2018-43%2041%200%2026%2029%2047%2039%2072%202%205%209%205%2011%200%2010-25%2039-46%2039-72%200-23-19-41-46-41zm0%2057c-9%200-17-7-17-16s8-16%2017-16%2017%207%2017%2016-8%2016-17%2016z'%20fill='white'/%3E%0A%3Ccircle%20cx='118'%20cy='118'%20r='31'%20fill='none'%20stroke='white'%20stroke-width='10'/%3E%0A%3Cline%20x1='140'%20y1='140'%20x2='158'%20y2='158'%20stroke='white'%20stroke-width='10'%20stroke-linecap='round'/%3E%0A%3C/g%3E%0A%3C/svg%3E" alt="Find-It"></div>
+    <div class="splashTitle">Find-It</div>
+  </div>
+</div>
+<div class="bg-parallax" id="bgParallax"></div>
+<div class="app">
+  <div class="statusbar">
+    <div id="clockTop">20:26</div>
+    <div class="island"><div class="avatar"></div><div>••••</div></div>
+    <div>LIVE</div>
+  </div>
+
+  <div class="top">
+    <button class="circle" id="menuOpen" type="button">☰</button>
+    <div class="titleWrap">
+      <h1 class="title">Jetzt offen <small>⌄</small></h1>
+      <div class="areaPill" id="areaBadge">Stuttgart live</div>
+    </div>
+    <button class="circle" id="locateQuick" type="button">✕</button>
+  </div>
+
+  <div class="searchrow">
+    <div class="locbar">
+      <span>🧭</span>
+      <span class="main" id="locMain">Mein Standort</span>
+      <span class="sub" id="locSub">Stuttgart</span>
+    </div>
+    <button class="searchbtn" id="searchBtn" type="button">Suchen</button>
+  </div>
+
+  <div class="filters">
+    <select class="filter" id="category">
+      <option value="food">Essen 🍔</option>
+      <option value="cafe">Cafés ☕</option>
+      <option value="bar">Bars 🍸</option>
+      <option value="shop">Lebensmittel 👨‍🍳</option>
+      <option value="toilet">Öffentliche Toiletten 🚻</option>
+      <option value="smoke">Zigaretten 🚬</option>
+      <option value="vending">Automaten 🥤</option>
+      <option value="fuel">Tankstellen ⛽</option>
+      <option value="pharmacy">Apotheken 💊</option>
+      <option value="bank">Banken 🏦</option>
+    </select>
+    <select class="filter" id="radius">
+      <option value="500">500 m</option>
+      <option value="1000">1000 m</option>
+      <option value="1500">1500 m</option>
+      <option value="2000">2000 m</option>
+      <option value="2500">2500 m</option>
+      <option value="3000" selected>3000 m</option>
+    </select>
+  </div>
+
+  <div class="quickBlock" style="margin:0 2px 10px">
+    <div class="quickTitle">🎯 Was suchst du gerade?</div>
+    <div class="quickList" id="intentChips">
+      <button class="quickChip" type="button" data-intent="balanced">Am besten insgesamt</button>
+      <button class="quickChip" type="button" data-intent="quick">Am schnellsten</button>
+      <button class="quickChip" type="button" data-intent="quiet">Eher ruhig</button>
+      <button class="quickChip" type="button" data-intent="date">Für Date/Atmosphäre</button>
+      <button class="quickChip" type="button" data-intent="local">Eher lokal</button>
+      <button class="quickChip" type="button" data-intent="late">Spät noch offen</button>
+    </div>
+    <div class="helpText" id="intentHint" style="margin-top:8px">Die Empfehlung passt sich an deine Situation an.</div>
+  </div>
+
+  
+  <div class="smokeActions" id="smokeActions" style="display:none">
+    <button class="smokeBtn" id="addSmokeHereBtn" type="button">🚬 Automat hier hinzufügen</button>
+    <button class="smokeBtn secondary" id="clearSmokeBtn" type="button">Gespeicherte löschen</button>
+  </div>
+  <div class="summary"><span class="dot"></span> <span id="summaryText">Bereit zum Suchen</span></div>
+  <div class="helpcard" id="helpCard">
+    <div class="helpTitle">So testest du die App</div>
+    <div class="helpText">1. Tippe auf <b>⌖</b> für deinen Standort. 2. Wähle Kategorie und Radius. 3. Tippe auf <b>Suchen</b>. 4. Tippe einen Treffer an, um die Wegbeschreibung zu öffnen. 5. Speichere wichtige Orte als Favoriten.</div>
+  </div>
+
+  <div class="quickSections">
+    <div class="quickBlock">
+      <div class="quickTitle">⭐ Favoriten</div>
+      <div class="quickList" id="favoritesList"><div class="quickEmpty">Noch keine Favoriten</div></div>
+    </div>
+    <div class="quickBlock">
+      <div class="quickTitle">🕘 Zuletzt geöffnet</div>
+      <div class="quickList" id="recentList"><div class="quickEmpty">Noch keine Einträge</div></div>
+    </div>
+  </div>
+
+  <div class="list" id="list"></div>
+</div>
+
+<div class="detail" id="detail">
+  <div class="panel">
+    <div class="handlewrap"><div class="handle"></div></div>
+    <div class="head">
+      <div class="headtop">
+        <div>
+          <div class="detailtitle" id="detailTitle">Ort</div>
+          <div class="meta" id="detailMeta">Adresse</div>
+        </div>
+        <button class="close" id="detailClose" type="button">×</button>
+      </div>
+    </div>
+    <div class="body2">
+      <div class="mapBox"><iframe id="miniMap" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+      <div class="box">
+        <div class="boxtitle">Wegbeschreibung</div>
+        <div class="stat" id="routeStat">Entfernung wird berechnet …</div>
+        <div class="note" id="routeNote">Tippe auf Maps, um die Route direkt zu öffnen.</div>
+        <div class="actions modeActions">
+          <button class="action secondary modeBtn active" id="modeFoot" type="button">🚶 Zu Fuß</button>
+          <button class="action secondary modeBtn" id="modeBike" type="button">🚲 Fahrrad</button>
+          <button class="action secondary modeBtn" id="modeDrive" type="button">🚗 Auto</button>
+        </div>
+        <div class="actions">
+          <a class="action" id="openMaps" target="_blank" rel="noopener">📍 Route starten</a>
+          <a class="action secondary" id="openAppleMaps" target="_blank" rel="noopener">🧭 Apple Karten</a>
+          <button class="action secondary" id="refreshRoute" type="button">↻ Neu laden</button>
+          <button class="action secondary" id="favoriteBtn" type="button">⭐ Favorit</button>
+        </div>
+        <div class="actions" id="smokeDetailActions" style="display:none">
+          <button class="action" id="confirmSmokeBtn" type="button">🚬 Automat bestätigen</button>
+          <button class="action secondary" id="removeSmokeBtn" type="button">❌ Gibt es nicht mehr</button>
+        </div>
+        <div class="line" id="smokeHint" style="display:none;margin-top:8px">Du kannst neue Automaten lokal speichern oder vorhandene als entfernt markieren.</div>
+      </div>
+
+      <div class="box">
+        <div class="boxtitle">Warum empfohlen</div>
+        <div class="line" id="detailWhy">Passt insgesamt gut.</div>
+        <div class="line" id="detailWhyList" style="margin-top:6px">-</div>
+      </div>
+
+      <div class="box">
+        <div class="boxtitle">Zahlung</div>
+        <div class="stat" id="paymentStatus">Noch keine Angabe</div>
+        <div class="line" id="paymentMeta">Nutzer können hier melden, ob Kartenzahlung geht oder ob nur Barzahlung möglich ist.</div>
+        <div class="line" id="paymentTrust" style="margin-top:6px">Vertrauen: noch keine Daten</div>
+        <div class="actions" id="paymentActions">
+          <button class="action" id="voteCardBtn" type="button">💳 Kartenzahlung geht</button>
+          <button class="action secondary" id="voteCashBtn" type="button">💶 Nur Bar</button>
+        </div>
+      </div>
+
+      <div class="box">
+        <div class="boxtitle">Öffnungszeiten</div>
+        <div class="line" id="detailToday">Heute: unbekannt</div>
+        <div class="line" id="detailHours">Keine Öffnungszeiten hinterlegt.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="menu" id="menu">
+  <div class="menuPanel">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+      <div class="menuTitle">Jetzt offen Menü</div>
+      <button class="close" id="menuClose" type="button">×</button>
+    </div>
+    <div class="menuGrid">
+      <button class="menuChip" id="menuLocate" type="button">📍<br>Standort holen</button>
+      <button class="menuChip" id="menuSearch" type="button">🔎<br>Jetzt suchen</button>
+      <button class="menuChip" id="menuAbout" type="button">ℹ️<br>Über die App</button>
+      <button class="menuChip" id="menuPrivacy" type="button">🔒<br>Datenschutz</button>
+    </div>
+    <div class="small">Der Hintergrund ist jetzt fest auf das beleuchtete Schlossmotiv gesetzt. Das Layout bleibt kompakt und clean.</div>
+  </div>
+</div>
+
+<script>
+const list = document.getElementById('list');
+const categoryEl = document.getElementById('category');
+const radiusEl = document.getElementById('radius');
+const summaryText = document.getElementById('summaryText');
+const locMain = document.getElementById('locMain');
+const locSub = document.getElementById('locSub');
+const areaBadge = document.getElementById('areaBadge');
+const searchBtn = document.getElementById('searchBtn');
+searchBtn.style.pointerEvents = 'auto';
+const locateQuick = document.getElementById('locateQuick');
+const menu = document.getElementById('menu');
+
+const detail = document.getElementById('detail');
+const detailTitle = document.getElementById('detailTitle');
+const detailMeta = document.getElementById('detailMeta');
+const detailToday = document.getElementById('detailToday');
+const detailHours = document.getElementById('detailHours');
+const detailWhy = document.getElementById('detailWhy');
+const detailWhyList = document.getElementById('detailWhyList');
+const paymentStatus = document.getElementById('paymentStatus');
+const paymentMeta = document.getElementById('paymentMeta');
+const paymentTrust = document.getElementById('paymentTrust');
+const voteCardBtn = document.getElementById('voteCardBtn');
+const voteCashBtn = document.getElementById('voteCashBtn');
+const routeStat = document.getElementById('routeStat');
+const routeNote = document.getElementById('routeNote');
+const openMaps = document.getElementById('openMaps');
+const openAppleMaps = document.getElementById('openAppleMaps');
+const miniMap = document.getElementById('miniMap');
+const intentHint = document.getElementById('intentHint');
+
+let userLoc = null;
+let selectedItem = null;
+let currentNavMode = 'foot';
+let currentItems = [];
+let currentIntent = 'balanced';
+const FAVORITES_KEY = 'jetztOffenFavoritesV1';
+const RECENTS_KEY = 'jetztOffenRecentsV1';
+const LOCAL_SMOKE_KEY = 'jetztOffenLocalSmokeV2';
+const LOCAL_SMOKE_REMOVED_KEY = 'jetztOffenRemovedSmokeV2';
+const LAST_LOCATION_KEY = 'jetztOffenLastLocationV1';
+const SEARCH_CACHE_PREFIX = 'jetztOffenSearchCacheV4';
+const PREFETCH_STATE_KEY = 'jetztOffenPrefetchStateV1';
+const PAYMENT_VOTES_KEY = 'jetztOffenPaymentVotesV1';
+const POPULARITY_KEY = 'jetztOffenPopularityV1';
+const SPONSORED_SPOTS_KEY = 'jetztOffenSponsoredSpotsV1';
+
+const DAY_MAP = {Mo:1,Tu:2,We:3,Th:4,Fr:5,Sa:6,Su:0};
+
+
+const OFFLINE_SNAPSHOT = {
+  food:[
+    {name:'Fast Food · Cannstatt', lat:48.8053, lon:9.2221, addr:'Bad Cannstatt', opening_hours:'Mo-Su 10:00-23:00'},
+    {name:'Bäckerei · Cannstatt', lat:48.8061, lon:9.2198, addr:'Bad Cannstatt', opening_hours:'Mo-Sa 06:00-20:00; Su 08:00-18:00'},
+    {name:'Imbiss · Wilhelmsplatz', lat:48.8047, lon:9.2186, addr:'Bad Cannstatt', opening_hours:'Mo-Su 11:00-22:00'},
+    {name:'Pizza · Bahnhof Cannstatt', lat:48.8067, lon:9.2172, addr:'Bad Cannstatt', opening_hours:'Mo-Su 11:00-23:00'},
+    {name:'Asia Snack · Cannstatt', lat:48.8042, lon:9.2204, addr:'Bad Cannstatt', opening_hours:'Mo-Su 11:00-22:00'},
+    {name:'Restaurant · Stuttgart Mitte', lat:48.7781, lon:9.1804, addr:'Stuttgart-Mitte', opening_hours:'Mo-Su 11:00-23:00'},
+    {name:'Bäckerei · Schlossplatz', lat:48.7787, lon:9.1794, addr:'Stuttgart-Mitte', opening_hours:'Mo-Sa 06:00-20:00; Su 08:00-18:00'},
+    {name:'Fast Food · Königstraße', lat:48.7769, lon:9.1818, addr:'Stuttgart-Mitte', opening_hours:'Mo-Su 10:00-23:00'},
+    {name:'Imbiss · Feuerbach', lat:48.8088, lon:9.1575, addr:'Feuerbach', opening_hours:'Mo-Su 11:00-22:00'},
+    {name:'Bäckerei · Vaihingen', lat:48.7262, lon:9.1128, addr:'Vaihingen', opening_hours:'Mo-Sa 06:00-19:00; Su 08:00-17:00'}
+  ],
+  cafe:[
+    {name:'Café · Cannstatt', lat:48.8056, lon:9.2207, addr:'Bad Cannstatt', opening_hours:'Mo-Su 08:00-19:00', amenity:'cafe'},
+    {name:'Espresso Bar · Wilhelmsplatz', lat:48.8049, lon:9.2184, addr:'Bad Cannstatt', opening_hours:'Mo-Sa 07:30-20:00; Su 09:00-18:00', amenity:'cafe'},
+    {name:'Café · Schlossplatz', lat:48.7784, lon:9.1798, addr:'Stuttgart-Mitte', opening_hours:'Mo-Su 08:00-20:00', amenity:'cafe'},
+    {name:'Kaffeehaus · Königstraße', lat:48.7768, lon:9.1812, addr:'Stuttgart-Mitte', opening_hours:'Mo-Sa 08:00-20:00; Su 10:00-18:00', amenity:'cafe'},
+    {name:'Café · Feuerbach', lat:48.8081, lon:9.1569, addr:'Feuerbach', opening_hours:'Mo-Su 08:00-19:00', amenity:'cafe'}
+  ],
+  bar:[
+    {name:'Bar · Cannstatt', lat:48.8051, lon:9.2191, addr:'Bad Cannstatt', opening_hours:'Mo-Su 18:00-02:00', amenity:'bar'},
+    {name:'Cocktailbar · Wilhelmsplatz', lat:48.8044, lon:9.2182, addr:'Bad Cannstatt', opening_hours:'Do-Sa 19:00-03:00', amenity:'bar'},
+    {name:'Bar · Stuttgart Mitte', lat:48.7776, lon:9.1807, addr:'Stuttgart-Mitte', opening_hours:'Mo-Su 18:00-02:00', amenity:'bar'},
+    {name:'Pub · Königstraße', lat:48.7765, lon:9.1819, addr:'Stuttgart-Mitte', opening_hours:'Mo-Su 17:00-01:00', amenity:'pub'},
+    {name:'Bar · Feuerbach', lat:48.8085, lon:9.1573, addr:'Feuerbach', opening_hours:'Mi-Sa 18:00-01:00', amenity:'bar'}
+  ],
+  shop:[
+    {name:'Supermarkt · Cannstatt', lat:48.8058, lon:9.2208, addr:'Bad Cannstatt', opening_hours:'Mo-Sa 07:00-22:00'},
+    {name:'Bio-Markt · Cannstatt', lat:48.8049, lon:9.2187, addr:'Bad Cannstatt', opening_hours:'Mo-Sa 08:00-20:00'},
+    {name:'Späti · Cannstatt', lat:48.8064, lon:9.2219, addr:'Bad Cannstatt', opening_hours:'Mo-Su 08:00-23:00'},
+    {name:'Supermarkt · Wilhelma', lat:48.8098, lon:9.2108, addr:'Bad Cannstatt', opening_hours:'Mo-Sa 07:00-22:00'},
+    {name:'Supermarkt · Stuttgart Mitte', lat:48.7772, lon:9.1791, addr:'Stuttgart-Mitte', opening_hours:'Mo-Sa 07:00-22:00'},
+    {name:'Supermarkt · Königstraße', lat:48.7764, lon:9.1813, addr:'Stuttgart-Mitte', opening_hours:'Mo-Sa 07:00-22:00'},
+    {name:'Spätkauf · Ost', lat:48.7846, lon:9.2011, addr:'Stuttgart-Ost', opening_hours:'Mo-Su 08:00-23:30'},
+    {name:'Supermarkt · Feuerbach', lat:48.8079, lon:9.1561, addr:'Feuerbach', opening_hours:'Mo-Sa 07:00-22:00'},
+    {name:'Supermarkt · Backnang', lat:48.9474, lon:9.4317, addr:'Backnang', opening_hours:'Mo-Sa 07:00-22:00'},
+    {name:'Späti · Backnang', lat:48.9461, lon:9.4299, addr:'Backnang', opening_hours:'Mo-Su 08:00-23:00'}
+  ],
+  smoke:[
+    {name:'Zigarettenautomat · Cannstatt', lat:48.8055, lon:9.2196, addr:'Bad Cannstatt', opening_hours:'24/7'},
+    {name:'Zigarettenautomat · Wilhelmsplatz', lat:48.8045, lon:9.2189, addr:'Bad Cannstatt', opening_hours:'24/7'},
+    {name:'Zigarettenautomat · Bahnhof Cannstatt', lat:48.8068, lon:9.2176, addr:'Bad Cannstatt', opening_hours:'24/7'},
+    {name:'Zigarettenautomat · Mitte', lat:48.7778, lon:9.1802, addr:'Stuttgart-Mitte', opening_hours:'24/7'},
+    {name:'Zigarettenautomat · Backnang', lat:48.9468, lon:9.4291, addr:'Backnang', opening_hours:'24/7'}
+  ],
+  vending:[
+    {name:'Getränkeautomat · Cannstatt', lat:48.8062, lon:9.2201, addr:'Bad Cannstatt', opening_hours:'24/7'},
+    {name:'Snackautomat · Cannstatt', lat:48.8051, lon:9.2181, addr:'Bad Cannstatt', opening_hours:'24/7'},
+    {name:'Automat · Bahnhof Cannstatt', lat:48.8069, lon:9.2178, addr:'Bad Cannstatt', opening_hours:'24/7'},
+    {name:'Getränkeautomat · Mitte', lat:48.7775, lon:9.1806, addr:'Stuttgart-Mitte', opening_hours:'24/7'},
+    {name:'Snackautomat · Backnang', lat:48.9464, lon:9.4305, addr:'Backnang', opening_hours:'24/7'}
+  ],
+  fuel:[
+    {name:'Aral', brand:'Aral', lat:48.8077, lon:9.2164, addr:'Bad Cannstatt', opening_hours:'24/7'},
+    {name:'Shell', brand:'Shell', lat:48.8012, lon:9.1918, addr:'Stuttgart-Nord', opening_hours:'24/7'},
+    {name:'ESSO', brand:'ESSO', lat:48.7878, lon:9.2061, addr:'Stuttgart-Ost', opening_hours:'24/7'},
+    {name:'JET', brand:'JET', lat:48.7278, lon:9.1112, addr:'Vaihingen', opening_hours:'24/7'},
+    {name:'AVIA', brand:'AVIA', lat:48.9481, lon:9.4344, addr:'Backnang', opening_hours:'24/7'}
+  ],
+  toilet:[
+    {name:'WC · Bahnhof Cannstatt', lat:48.8066, lon:9.2175, addr:'Bad Cannstatt', opening_hours:'24/7', amenity:'toilets'},
+    {name:'Öffentliche Toilette · Wilhelmsplatz', lat:48.8046, lon:9.2183, addr:'Bad Cannstatt', opening_hours:'Mo-Su 06:00-22:00', amenity:'toilets'},
+    {name:'WC · Schlossplatz', lat:48.7783, lon:9.1791, addr:'Stuttgart-Mitte', opening_hours:'24/7', amenity:'toilets'},
+    {name:'Toilette · Feuerbach', lat:48.8082, lon:9.1567, addr:'Feuerbach', opening_hours:'Mo-Su 06:00-22:00', amenity:'toilets'},
+    {name:'WC · Backnang Zentrum', lat:48.9467, lon:9.4301, addr:'Backnang', opening_hours:'Mo-Su 07:00-22:00', amenity:'toilets'}
+  ]
+  ,pharmacy:[
+    {name:'Apotheke · Schlossplatz', lat:48.7785, lon:9.1801, addr:'Schlossplatz, Stuttgart-Mitte', opening_hours:'Mo-Fr 08:00-19:00; Sa 09:00-18:00', amenity:'pharmacy'},
+    {name:'Apotheke · Bad Cannstatt', lat:48.8058, lon:9.2210, addr:'Bad Cannstatt', opening_hours:'Mo-Fr 08:00-19:00; Sa 09:00-16:00', amenity:'pharmacy'},
+    {name:'Apotheke · Feuerbach', lat:48.8083, lon:9.1568, addr:'Feuerbach', opening_hours:'Mo-Fr 08:00-18:30; Sa 09:00-13:00', amenity:'pharmacy'},
+    {name:'Nachtdienst-Apotheke · Mitte', lat:48.7782, lon:9.1799, addr:'Stuttgart-Mitte', opening_hours:'24/7', amenity:'pharmacy', healthcare:'pharmacy'},
+    {name:'Nachtapotheke · Cannstatt', lat:48.8054, lon:9.2202, addr:'Bad Cannstatt', opening_hours:'24/7', amenity:'pharmacy', healthcare:'pharmacy'}
+  ],
+  bank:[
+    {name:'Bankfiliale · Königstraße', lat:48.7769, lon:9.1814, addr:'Königstraße, Stuttgart-Mitte', opening_hours:'Mo-Fr 09:00-17:00', amenity:'bank'},
+    {name:'Sparkasse · Bad Cannstatt', lat:48.8052, lon:9.2194, addr:'Bad Cannstatt', opening_hours:'Mo-Fr 09:00-16:30', amenity:'bank'},
+    {name:'Geldautomat · Feuerbach', lat:48.8086, lon:9.1571, addr:'Feuerbach', opening_hours:'24/7', amenity:'atm'}
+  ]
+
+};
+
+function makePlaceKey(item, category = categoryEl.value){
+  const tags = item.tags || {};
+  const name = deriveDisplayName(tags, category).toLowerCase().trim();
+  const lat = Number(item.lat || 0).toFixed(4);
+  const lon = Number(item.lon || 0).toFixed(4);
+  return `${category}|${name}|${lat}|${lon}`;
+}
+function loadPaymentVotes(){
+  try { return JSON.parse(localStorage.getItem(PAYMENT_VOTES_KEY) || '{}'); } catch(e){ return {}; }
+}
+function savePaymentVotes(votes){
+  try { localStorage.setItem(PAYMENT_VOTES_KEY, JSON.stringify(votes)); } catch(e){}
+}
+function loadPopularity(){
+  try { return JSON.parse(localStorage.getItem(POPULARITY_KEY) || '{}'); } catch(e){ return {}; }
+}
+function savePopularity(store){
+  try { localStorage.setItem(POPULARITY_KEY, JSON.stringify(store)); } catch(e){}
+}
+function loadSponsoredSpots(){
+  try { return JSON.parse(localStorage.getItem(SPONSORED_SPOTS_KEY) || '{}'); } catch(e){ return {}; }
+}
+function getPopularityInfo(item, category = categoryEl.value){
+  const store = loadPopularity();
+  const entry = store[makePlaceKey(item, category)] || {opens:0, route:0, lastOpenAt:0, lastRouteAt:0};
+  const opens = Number(entry.opens || 0);
+  const route = Number(entry.route || 0);
+  const total = opens + (route * 2);
+  const minsSinceOpen = entry.lastOpenAt ? Math.floor((Date.now() - Number(entry.lastOpenAt)) / 60000) : Infinity;
+  const minsSinceRoute = entry.lastRouteAt ? Math.floor((Date.now() - Number(entry.lastRouteAt)) / 60000) : Infinity;
+  const isTrending = total >= 2 && (minsSinceOpen <= 180 || minsSinceRoute <= 240);
+  return { ...entry, opens, route, total, isTrending, freshness: Math.min(minsSinceOpen, minsSinceRoute) };
+}
+function registerPopularityHit(item, type='open', category = categoryEl.value){
+  if(!item) return;
+  const store = loadPopularity();
+  const key = makePlaceKey(item, category);
+  const current = store[key] || {opens:0, route:0, lastOpenAt:0, lastRouteAt:0};
+  if(type === 'route'){
+    current.route = Number(current.route || 0) + 1;
+    current.lastRouteAt = Date.now();
+  } else {
+    current.opens = Number(current.opens || 0) + 1;
+    current.lastOpenAt = Date.now();
+  }
+  store[key] = current;
+  savePopularity(store);
+}
+function formatRelativeTime(ts){
+  if(!ts) return 'noch nie';
+  const diff = Math.max(0, Date.now() - Number(ts || 0));
+  const mins = Math.floor(diff / 60000);
+  if(mins < 1) return 'gerade eben';
+  if(mins < 60) return `vor ${mins} Min.`;
+  const hours = Math.floor(mins / 60);
+  if(hours < 24) return `vor ${hours} Std.`;
+  const days = Math.floor(hours / 24);
+  if(days < 7) return `vor ${days} Tag${days===1?'':'en'}`;
+  const weeks = Math.floor(days / 7);
+  if(weeks < 5) return `vor ${weeks} Woche${weeks===1?'':'n'}`;
+  try { return 'am ' + new Date(ts).toLocaleDateString('de-DE'); } catch(e){ return 'vor längerer Zeit'; }
+}
+function getPaymentInfo(item, category = categoryEl.value){
+  const store = loadPaymentVotes();
+  const entry = store[makePlaceKey(item, category)] || {card:0, cash:0, updatedAt:0};
+  const card = Number(entry.card || 0);
+  const cash = Number(entry.cash || 0);
+  const total = card + cash;
+  let status = 'Noch keine Angabe';
+  let tone = 'neutral';
+  if(total > 0){
+    if(card > cash){
+      status = 'Kartenzahlung bestätigt';
+      tone = 'card';
+    } else if(cash > card){
+      status = 'Eher nur Barzahlung';
+      tone = 'cash';
+    } else {
+      status = 'Uneinheitliche Angaben';
+      tone = 'mixed';
+    }
+  }
+  const balance = Math.abs(card - cash);
+  let confidence = 'noch keine Daten';
+  if(total >= 8 && balance >= 4) confidence = 'hoch';
+  else if(total >= 4 && balance >= 2) confidence = 'mittel';
+  else if(total > 0) confidence = 'niedrig';
+  return {
+    ...entry,
+    card,
+    cash,
+    total,
+    status,
+    tone,
+    confidence,
+    lastText: formatRelativeTime(entry.updatedAt)
+  };
+}
+function paymentMetaText(info){
+  if(!info.total) return 'Noch niemand hat für diesen Ort gemeldet, ob Kartenzahlung möglich ist.';
+  const cardVotes = info.card || 0;
+  const cashVotes = info.cash || 0;
+  const parts = [];
+  if(cardVotes){
+    parts.push(`💳 ${cardVotes} Bestätigung${cardVotes===1?'':'en'} für Kartenzahlung`);
+  }
+  if(cashVotes){
+    parts.push(`💶 ${cashVotes} Meldung${cashVotes===1?'':'en'} für nur Bar`);
+  }
+  parts.push(`🕒 zuletzt ${info.lastText}`);
+  return parts.join(' · ');
+}
+function paymentTrustText(info){
+  if(!info.total) return 'Vertrauen: noch keine Daten';
+  if(info.tone === 'mixed'){
+    return `Vertrauen: ${info.confidence} · Angaben widersprechen sich gerade`;
+  }
+  const side = info.tone === 'card' ? 'Kartenzahlung' : 'nur Bar';
+  return `Vertrauen: ${info.confidence} · klare Tendenz zu ${side}`;
+}
+function updatePaymentUi(item){
+  const info = getPaymentInfo(item, categoryEl.value);
+  paymentStatus.textContent = info.status;
+  paymentMeta.textContent = paymentMetaText(info);
+  paymentTrust.textContent = paymentTrustText(info);
+  voteCardBtn.style.opacity = info.tone === 'card' ? '1' : '0.92';
+  voteCashBtn.style.opacity = info.tone === 'cash' ? '1' : '0.92';
+}
+function votePayment(kind){
+  if(!selectedItem || !['card','cash'].includes(kind)) return;
+  voteCardBtn.disabled = true;
+  voteCashBtn.disabled = true;
+  try{
+    const store = loadPaymentVotes();
+    const key = makePlaceKey(selectedItem, categoryEl.value);
+    const current = store[key] || {card:0, cash:0, updatedAt:0};
+    if(kind === 'card') current.card = Number(current.card || 0) + 1;
+    if(kind === 'cash') current.cash = Number(current.cash || 0) + 1;
+    current.updatedAt = Date.now();
+    store[key] = current;
+    savePaymentVotes(store);
+    updatePaymentUi(selectedItem);
+  } finally {
+    setTimeout(()=>{
+      voteCardBtn.disabled = false;
+      voteCashBtn.disabled = false;
+    }, 200);
+  }
+}
+
+function saveLastLocation(loc){
+  try{ localStorage.setItem(LAST_LOCATION_KEY, JSON.stringify({...loc, ts: Date.now()})); }catch(e){}
+}
+function loadLastLocation(){
+  try{
+    const v = JSON.parse(localStorage.getItem(LAST_LOCATION_KEY) || 'null');
+    if(v && typeof v.lat === 'number' && typeof v.lon === 'number') return v;
+  }catch(e){}
+  return null;
+}
+function cacheKeyFor(category, lat, lon){
+  return `${SEARCH_CACHE_PREFIX}:${category}:${Math.round(lat*100)/100}:${Math.round(lon*100)/100}`;
+}
+function saveCategoryCache(category, lat, lon, items){
+  try{
+    localStorage.setItem(cacheKeyFor(category, lat, lon), JSON.stringify({ts: Date.now(), items}));
+  }catch(e){}
+}
+function loadCategoryCache(category, lat, lon){
+  try{
+    const raw = localStorage.getItem(cacheKeyFor(category, lat, lon));
+    if(!raw) return [];
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed.items) ? parsed.items : [];
+  }catch(e){ return []; }
+}
+function bucketedAllCaches(category){
+  const prefix = `${SEARCH_CACHE_PREFIX}:${category}:`;
+  const out = [];
+  try{
+    for(let i=0;i<localStorage.length;i++){
+      const k = localStorage.key(i);
+      if(!k || !k.startsWith(prefix)) continue;
+      const parsed = JSON.parse(localStorage.getItem(k) || 'null');
+      if(parsed && Array.isArray(parsed.items)) out.push(...parsed.items);
+    }
+  }catch(e){}
+  return out;
+}
+function makeOfflineItem(entry, category, source='snapshot'){
+  return {
+    type: source,
+    lat: entry.lat,
+    lon: entry.lon,
+    tags:{
+      name: entry.name || '',
+      brand: entry.brand || '',
+      operator: entry.operator || '',
+      shop: entry.shop || '',
+      amenity: entry.amenity || '',
+      cuisine: entry.cuisine || '',
+      opening_hours: entry.opening_hours || '',
+      'addr:street': entry.addr || '',
+      note: source === 'cache' ? 'Zuletzt live gespeichert' : 'Offline-Snapshot'
+    },
+    category
+  };
+}
+
+function deriveDisplayName(tags={}, category=''){
+  const clean = value => String(value || '').replace(/\s+/g, ' ').trim();
+  const preferred = [clean(tags.name), clean(tags.brand), clean(tags.operator)].filter(Boolean);
+  if(preferred.length) return preferred[0];
+
+  const brandOperator = [clean(tags.brand), clean(tags.operator)].filter(Boolean);
+  if(brandOperator.length === 2 && brandOperator[0].toLowerCase() !== brandOperator[1].toLowerCase()){
+    return `${brandOperator[0]} · ${brandOperator[1]}`;
+  }
+
+  if(category === 'food'){
+    if(clean(tags.cuisine)) return clean(tags.cuisine).split(';')[0].replace(/_/g,' ');
+    if(clean(tags.amenity) === 'restaurant') return 'Restaurant';
+    if(clean(tags.amenity) === 'fast_food') return 'Imbiss';
+    if(clean(tags.shop) === 'bakery') return 'Bäckerei';
+  }
+  if(category === 'cafe'){
+    if(clean(tags.amenity) === 'cafe') return 'Café';
+    if(clean(tags.cuisine)) return clean(tags.cuisine).split(';')[0].replace(/_/g,' ');
+  }
+  if(category === 'bar'){
+    if(clean(tags.amenity) === 'bar') return 'Bar';
+    if(clean(tags.amenity) === 'pub') return 'Pub';
+    if(clean(tags.amenity) === 'biergarten') return 'Biergarten';
+  }
+  if(category === 'shop'){
+    if(clean(tags.shop) === 'supermarket') return 'Supermarkt';
+    if(clean(tags.shop) === 'convenience') return 'Späti';
+    if(clean(tags.shop) === 'bakery') return 'Bäckerei';
+  }
+  if(category === 'fuel' && clean(tags.amenity) === 'fuel') return 'Tankstelle';
+  if(category === 'pharmacy' || category === 'night_pharmacy'){
+    if(clean(tags.amenity) === 'pharmacy' || clean(tags.healthcare) === 'pharmacy') return category === 'night_pharmacy' ? 'Nachtdienst-Apotheke' : 'Apotheke';
+  }
+  if(category === 'bank'){
+    if(clean(tags.amenity) === 'bank') return 'Bank';
+    if(clean(tags.amenity) === 'atm') return 'Geldautomat';
+  }
+  if(category === 'vending' && clean(tags.amenity) === 'vending_machine') return 'Automat';
+  if(category === 'toilet' && clean(tags.amenity) === 'toilets') return 'Öffentliche Toilette';
+  if(category === 'smoke') return 'Zigarettenautomat';
+  return 'Unbekannt';
+}
+function normalizeItemName(item, category = categoryEl.value){
+  return deriveDisplayName(item.tags || {}, category).toLowerCase();
+}
+function dedupeItems(items){
+  const out = [];
+  items.forEach(item => {
+    const name = normalizeItemName(item);
+    const duplicate = out.some(existing => {
+      const ename = normalizeItemName(existing);
+      if(name && ename && name === ename && sameSpot(existing, item, 60)) return true;
+      return sameSpot(existing, item, 20);
+    });
+    if(!duplicate) out.push(item);
+  });
+  return out;
+}
+function itemMatchesCategory(item, category){
+  const tags = item.tags || {};
+  const amenity = String(tags.amenity || '').toLowerCase();
+  const shop = String(tags.shop || '').toLowerCase();
+  const cuisine = String(tags.cuisine || '').toLowerCase();
+  const name = `${tags.name || ''} ${tags.brand || ''} ${tags.operator || ''} ${tags.note || ''}`.toLowerCase();
+
+  if(category === 'food') return amenity === 'restaurant' || amenity === 'fast_food' || cuisine || /imbiss|pizza|burger|restaurant|grill|kebab/.test(name);
+  if(category === 'cafe') return amenity === 'cafe' || /cafe|kaffee|espresso|bäck/.test(name);
+  if(category === 'bar') return amenity === 'bar' || amenity === 'pub' || amenity === 'biergarten' || /bar|pub|cocktail|lounge/.test(name);
+  if(category === 'shop') return shop === 'supermarket' || shop === 'convenience' || shop === 'kiosk' || /markt|shop|kiosk|edeka|rewe|aldi|lidl/.test(name);
+  if(category === 'toilet') return amenity === 'toilets' || /toilette|wc/.test(name);
+  if(category === 'smoke') return shop === 'tobacco' || amenity === 'vending_machine' || /zigarette|tabak|smoke/.test(name);
+  if(category === 'vending') return amenity === 'vending_machine' || /automat/.test(name);
+  if(category === 'fuel') return amenity === 'fuel' || /tankstelle|fuel/.test(name);
+  if(category === 'pharmacy') return amenity === 'pharmacy' || String(tags.healthcare || '').toLowerCase() === 'pharmacy' || /apotheke|pharmacy/.test(name);
+  if(category === 'night_pharmacy') return (amenity === 'pharmacy' || String(tags.healthcare || '').toLowerCase() === 'pharmacy' || /apotheke|pharmacy/.test(name)) && likelyNightPharmacy(tags);
+  if(category === 'bank') return amenity === 'bank' || amenity === 'atm' || /bank|sparkasse|volksbank|atm|geldautomat/.test(name);
+  return true;
+}
+
+function filterCategoryItems(items, category){
+  let filtered = items.slice();
+  if(category === 'smoke'){
+    filtered = mergeSmokeItems(filtered);
+  }
+
+  filtered = filtered.filter(item => itemMatchesCategory(item, category)).filter(item => {
+    if(item.type === 'local') return true;
+    const parsed = parseOpeningHours(item.tags?.opening_hours || '');
+    if(category === 'night_pharmacy'){
+      if(parsed.known) return parsed.isOpen;
+      return likelyNightPharmacy(item.tags || {});
+    }
+    return parsed.known ? parsed.isOpen : true;
+  });
+
+  if(category === 'shop'){
+    filtered = filtered.filter(item => {
+      const tags = item.tags || {};
+      const txt = `${tags.name || ''} ${tags.brand || ''} ${tags.operator || ''} ${tags.description || ''} ${tags.note || ''} ${buildAddress(tags)}`.toLowerCase();
+      return !/betriebsrestaurant|werk\s*[0-9]|werkstore|servicestore|mitarbeiter|employee|intern|internal|factory|plant|db\s|mercedes/.test(txt);
+    });
+  }
+  return filtered;
+}
+function sortAndLimit(items, category, limit=20){
+  return dedupeItems(items)
+    .sort((a,b) => scoreItem(b, category) - scoreItem(a, category))
+    .slice(0, limit);
+}
+function getOfflineCandidates(category, radius){
+  const snapshot = (OFFLINE_SNAPSHOT[category] || []).map(x => makeOfflineItem(x, category, 'snapshot'));
+  const cached = bucketedAllCaches(category).map(x => makeOfflineItem(x, category, 'cache'));
+  let combined = [...cached, ...snapshot];
+  if(userLoc){
+    const maxDist = Math.max(Number(radius) || 0, 0);
+    combined = combined.filter(item => haversine(userLoc.lat, userLoc.lon, item.lat, item.lon) <= maxDist);
+  }
+  return sortAndLimit(filterCategoryItems(combined, category), category, 20);
+}
+function serializeForCache(items){
+  return items.slice(0,50).map(item => ({
+    lat:item.lat,
+    lon:item.lon,
+    name:item.tags?.name || '',
+    brand:item.tags?.brand || '',
+    operator:item.tags?.operator || '',
+    shop:item.tags?.shop || '',
+    amenity:item.tags?.amenity || '',
+    cuisine:item.tags?.cuisine || '',
+    opening_hours:item.tags?.opening_hours || '',
+    addr:buildAddress(item.tags || {})
+  }));
+}
+function renderStatus(message){
+  summaryText.textContent = message;
+}
+
+function loadLocalSmoke(){
+  try { return JSON.parse(localStorage.getItem(LOCAL_SMOKE_KEY) || '[]'); } catch(e){ return []; }
+}
+function saveLocalSmoke(items){
+  localStorage.setItem(LOCAL_SMOKE_KEY, JSON.stringify(items));
+}
+function loadRemovedSmoke(){
+  try { return JSON.parse(localStorage.getItem(LOCAL_SMOKE_REMOVED_KEY) || '[]'); } catch(e){ return []; }
+}
+function saveRemovedSmoke(items){
+  localStorage.setItem(LOCAL_SMOKE_REMOVED_KEY, JSON.stringify(items));
+}
+function sameSpot(a,b,meters=20){
+  return haversine(a.lat,a.lon,b.lat,b.lon) <= meters;
+}
+function makeLocalSmoke(lat, lon, extras={}){
+  return {
+    type:'local',
+    lat, lon,
+    tags:{
+      name: extras.name || 'Bestätigter Zigarettenautomat',
+      opening_hours: extras.opening_hours || '',
+      note: extras.note || 'Lokal gespeichert'
+    }
+  };
+}
+function mergeSmokeItems(remoteItems){
+  const removed = loadRemovedSmoke();
+  let merged = remoteItems.filter(item => !removed.some(r => sameSpot(item, r, 25)));
+  const local = loadLocalSmoke();
+  local.forEach(item => {
+    if(!merged.some(x => sameSpot(x, item, 20))){
+      merged.push(makeLocalSmoke(item.lat, item.lon, item));
+    }
+  });
+  return merged;
+}
+function showSmokeControls(){
+  const visible = categoryEl.value === 'smoke';
+  document.getElementById('smokeActions').style.display = visible ? 'flex' : 'none';
+}
+function addSmokeAtCurrentLocation(){
+  if(!userLoc){ alert('Bitte zuerst den Standort laden.'); return; }
+  const local = loadLocalSmoke();
+  const entry = {lat:userLoc.lat, lon:userLoc.lon, name:'Von Nutzer hinzugefügt', note:'Am aktuellen Standort gespeichert'};
+  if(local.some(x => sameSpot(x, entry, 15))){
+    alert('Hier ist schon ein gespeicherter Automat vorhanden.');
+    return;
+  }
+  local.unshift(entry);
+  saveLocalSmoke(local);
+  alert('Automat gespeichert. Er erscheint jetzt in der Kategorie Zigaretten.');
+  if(categoryEl.value === 'smoke') searchLive();
+}
+function confirmSelectedSmoke(){
+  if(!selectedItem){ return; }
+  const local = loadLocalSmoke();
+  const entry = {
+    lat:selectedItem.lat,
+    lon:selectedItem.lon,
+    name:deriveDisplayName(selectedItem.tags || {}, 'smoke') !== 'Zigarettenautomat' ? ('Automat bei ' + deriveDisplayName(selectedItem.tags || {}, 'smoke')) : 'Bestätigter Zigarettenautomat',
+    note:'Aus Detailansicht bestätigt'
+  };
+  if(local.some(x => sameSpot(x, entry, 20))){
+    alert('Dieser Automat ist schon gespeichert.');
+    return;
+  }
+  local.unshift(entry);
+  saveLocalSmoke(local);
+  alert('Automat bestätigt und gespeichert.');
+}
+function removeSelectedSmoke(){
+  if(!selectedItem){ return; }
+  const removed = loadRemovedSmoke();
+  if(!removed.some(x => sameSpot(x, selectedItem, 20))){
+    removed.unshift({lat:selectedItem.lat, lon:selectedItem.lon});
+    saveRemovedSmoke(removed);
+  }
+  let local = loadLocalSmoke().filter(x => !sameSpot(x, selectedItem, 20));
+  saveLocalSmoke(local);
+  alert('Automat als entfernt markiert.');
+  detail.classList.remove('show');
+  if(categoryEl.value === 'smoke') searchLive();
+}
+function clearSavedSmoke(){
+  if(!confirm('Alle lokal gespeicherten Zigarettenautomaten löschen?')) return;
+  saveLocalSmoke([]);
+  saveRemovedSmoke([]);
+  if(categoryEl.value === 'smoke') searchLive();
+}
+
+
+function loadFavorites(){ try { return JSON.parse(localStorage.getItem(FAVORITES_KEY) || '[]'); } catch(e){ return []; } }
+function saveFavorites(items){ localStorage.setItem(FAVORITES_KEY, JSON.stringify(items)); }
+function loadRecents(){ try { return JSON.parse(localStorage.getItem(RECENTS_KEY) || '[]'); } catch(e){ return []; } }
+function saveRecents(items){ localStorage.setItem(RECENTS_KEY, JSON.stringify(items)); }
+function renderSkeletons(count=3){ list.innerHTML = Array.from({length: count}, ()=>'<div class="skeleton"></div>').join(''); }
+function makeSavedItem(item){ return { name: deriveDisplayName(item.tags || {}, categoryEl.value), lat: item.lat, lon: item.lon, category: categoryEl.value, addr: buildAddress(item.tags || {}) }; }
+function pushRecent(item){
+  const saved = makeSavedItem(item);
+  let recents = loadRecents().filter(x => !(Math.abs(x.lat - saved.lat) < 0.0001 && Math.abs(x.lon - saved.lon) < 0.0001));
+  recents.unshift(saved);
+  saveRecents(recents.slice(0,6));
+}
+function toggleFavorite(item){
+  const saved = makeSavedItem(item);
+  let favs = loadFavorites();
+  const exists = favs.some(x => Math.abs(x.lat - saved.lat) < 0.0001 && Math.abs(x.lon - saved.lon) < 0.0001);
+  if(exists){
+    favs = favs.filter(x => !(Math.abs(x.lat - saved.lat) < 0.0001 && Math.abs(x.lon - saved.lon) < 0.0001));
+    saveFavorites(favs);
+    return false;
+  } else {
+    favs.unshift(saved);
+    saveFavorites(favs.slice(0,12));
+    return true;
+  }
+}
+function openSavedItem(item){
+  categoryEl.value = item.category || categoryEl.value;
+  const fake = {lat:item.lat, lon:item.lon, tags:{name:item.name, note:item.addr, opening_hours:''}};
+  openDetail(fake);
+}
+
+function renderSavedChips(targetId, items, emptyText){
+  const el = document.getElementById(targetId);
+  if(!el) return;
+  if(!items.length){
+    el.innerHTML = `<div class="quickEmpty">${escapeHtml(emptyText)}</div>`;
+    return;
+  }
+  el.innerHTML = items.map((item, idx) => `
+    <button class="quickChip" type="button" data-saved-list="${escapeHtml(targetId)}" data-saved-idx="${idx}" title="${escapeHtml(item.name || '')}">
+      ${escapeHtml(item.name || 'Ort')}
+    </button>
+  `).join('');
+  Array.from(el.querySelectorAll('[data-saved-idx]')).forEach(btn => {
+    btn.addEventListener('click', () => {
+      const index = Number(btn.dataset.savedIdx);
+      const source = targetId === 'favoritesList' ? loadFavorites() : loadRecents();
+      const item = source[index];
+      if(item) openSavedItem(item);
+    });
+  });
+}
+
+function renderQuickLists(){
+  renderSavedChips('favoritesList', loadFavorites(), 'Noch keine Favoriten');
+  renderSavedChips('recentList', loadRecents(), 'Noch keine Einträge');
+}
+
+function updateLocationUi(){
+  if(!userLoc){
+    locMain.textContent = 'Standort nicht verfügbar';
+    locSub.textContent = 'Unbekannt';
+    return;
+  }
+  locMain.textContent = `${userLoc.lat.toFixed(5)}, ${userLoc.lon.toFixed(5)}`;
+  detectArea(userLoc.lat, userLoc.lon);
+}
+
+function scoreItem(item, category = categoryEl.value){
+  try{
+    return analyzeItem(item, category, currentIntent).score;
+  } catch(err){
+    return 0;
+  }
+}
+
+function intentLabel(intent=currentIntent){
+  return {
+    balanced:'am besten insgesamt',
+    quick:'am schnellsten erreichbar',
+    quiet:'eher ruhig',
+    date:'mit guter Atmosphäre',
+    local:'eher lokal',
+    late:'spät noch offen'
+  }[intent] || 'passend für dich';
+}
+function updateIntentUI(){
+  Array.from(document.querySelectorAll('[data-intent]')).forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.intent === currentIntent);
+  });
+  if(intentHint) intentHint.textContent = `Empfohlen wird jetzt: ${intentLabel(currentIntent)}.`;
+}
+function analyzeItem(item, category, intent=currentIntent){
+  const tags = item.tags || {};
+  const parsed = parseOpeningHours(tags.opening_hours || '');
+  const dist = userLoc ? haversine(userLoc.lat, userLoc.lon, item.lat, item.lon) : 999999;
+  const lookup = `${tags.name || ''} ${tags.brand || ''} ${tags.operator || ''} ${tags.cuisine || ''} ${tags.description || ''} ${tags.note || ''}`.toLowerCase();
+  let score = -dist;
+  const reasons = [];
+
+  if(parsed.always){ score += 5000; reasons.push('24/7 verfügbar'); }
+  else if(parsed.isOpen){ score += 3000; reasons.push('gerade offen'); }
+  if(item.type === 'local'){ score += 1200; reasons.push('lokal bestätigt'); }
+  if(dist <= 250){ score += 950; reasons.push('sehr nah'); }
+  else if(dist <= 600){ score += 500; reasons.push('nah'); }
+
+  if(category === 'food'){
+    if(/restaurant|fast_food|food_court/.test((tags.amenity||'').toLowerCase())) score += 180;
+    if(/pizza|döner|doner|burger|falafel|asian|italian|sushi/.test(lookup)) { score += 140; reasons.push('klare Essensoption'); }
+  }
+  if(category === 'cafe'){
+    if(/cafe/.test((tags.amenity||'').toLowerCase())) score += 220;
+    if(/cafe|café|kaffee|coffee|espresso|roastery/.test(lookup)) { score += 280; reasons.push('passt gut für Kaffee'); }
+    if(/bakery|bäckerei/.test(lookup)) score += 90;
+  }
+  if(category === 'bar'){
+    if(/bar|pub|biergarten/.test((tags.amenity||'').toLowerCase())) score += 220;
+    if(/bar|pub|lounge|cocktail|wein|wine/.test(lookup)) { score += 300; reasons.push('passt gut für Drinks'); }
+  }
+  if(category === 'shop'){
+    if(parsed.always) score += 800;
+    if(/supermarket/.test((tags.shop||'').toLowerCase())) score += 350;
+    if(/rewe|penny|edeka|aldi|lidl|kaufland|nahkauf|netto|tegut|denn's|biomarkt/.test(lookup)) { score += 900; reasons.push('typischer schneller Einkauf'); }
+    if(/convenience/.test((tags.shop||'').toLowerCase())) score += 120;
+  }
+  if(category === 'fuel'){
+    if(parsed.always) score += 1400;
+    if(/fuel/.test((tags.amenity||'').toLowerCase())) score += 250;
+    if(/aral|shell|esso|total|avia|jet/.test(lookup)) { score += 500; reasons.push('klare Tankstellenoption'); }
+  }
+  if(category === 'pharmacy'){
+    if(likelyNightPharmacy(tags)){
+      score += isLatePharmacyHour() ? 1900 : 450;
+      reasons.push(isLatePharmacyHour() ? 'Nachtdienst hilft gerade am meisten' : 'auch spät oft verlässlicher');
+    }
+    if(/24\/7/.test(String(tags.opening_hours || '').toLowerCase())) score += 700;
+  }
+  if(category === 'vending' && parsed.always) { score += 1000; reasons.push('jederzeit nutzbar'); }
+  if(category === 'toilet'){
+    if(parsed.always) score += 1600;
+    if(/toilets/.test((tags.amenity||'').toLowerCase())) { score += 500; reasons.push('klare WC-Option'); }
+  }
+
+  if(intent === 'quick'){
+    score += Math.max(0, 1800 - dist * 2.2);
+    reasons.push('für schnelle Entscheidung priorisiert');
+  }
+  if(intent === 'quiet'){
+    if(category === 'cafe' || category === 'bar'){ score += 600; reasons.push('besser für entspannt sitzen'); }
+    if(/lounge|roastery|espresso|wein|wine/.test(lookup)) score += 260;
+    if(/mcdonald|burger king|kfc|subway/.test(lookup)) score -= 320;
+    if(/fast_food/.test((tags.amenity||'').toLowerCase())) score -= 220;
+  }
+  if(intent === 'date'){
+    if(category === 'cafe' || category === 'bar'){ score += 700; reasons.push('wirkt stimmungsvoller'); }
+    if(/bar|wine|wein|cocktail|cafe|café|espresso|italian|sushi/.test(lookup)) score += 320;
+    if(/fast_food|kebab|döner|doner/.test(lookup)) score -= 260;
+  }
+  if(intent === 'local'){
+    if(item.type === 'local'){ score += 600; }
+    if(/mcdonald|burger king|starbucks|subway|kfc|aral|shell|esso/.test(lookup)) score -= 500;
+    else { score += 260; reasons.push('fühlt sich weniger nach Kette an'); }
+  }
+  if(intent === 'late'){
+    if(parsed.always){ score += 1200; }
+    else if(parsed.isOpen){ score += 400; reasons.push('für später eher zuverlässig'); }
+  }
+
+  const popularity = getPopularityInfo(item, category);
+  if(popularity.isTrending){
+    score += 850 + Math.min(500, popularity.total * 90);
+    reasons.unshift('gerade beliebt');
+  } else if(popularity.total >= 2){
+    score += Math.min(260, popularity.total * 45);
+  }
+
+  const sponsoredStore = loadSponsoredSpots();
+  const sponsoredEntry = sponsoredStore[makePlaceKey(item, category)] || null;
+  const isSponsored = !!(sponsoredEntry && sponsoredEntry.active);
+  if(isSponsored){
+    score += 1600;
+    reasons.unshift('Partner-Spot');
+  }
+
+  const uniqueReasons = [...new Set(reasons)].slice(0,3);
+  let badgeText = 'Empfohlen';
+  let badgeClass = '';
+  if(item.type === 'local') { badgeText = 'Lokal bestätigt'; badgeClass = 'local'; }
+  if(item.type === 'snapshot') { badgeText = 'Offline'; badgeClass = 'warn'; }
+  if(item.type === 'cache') { badgeText = 'Gespeichert'; badgeClass = 'local'; }
+
+  return { score, dist, parsed, reasons: uniqueReasons, badgeText, badgeClass, why: uniqueReasons.join(' · ') || 'passt insgesamt gut', popularity, isSponsored };
+}
+function updateClock(){
+  const now = new Date();
+  document.getElementById('clockTop').textContent =
+    now.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'});
+}
+updateClock();
+setInterval(updateClock, 10000);
+
+function haversine(lat1, lon1, lat2, lon2){
+  const R = 6371000;
+  const toRad = d => d*Math.PI/180;
+  const dLat = toRad(lat2-lat1);
+  const dLon = toRad(lon2-lon1);
+  const a = Math.sin(dLat/2)**2 + Math.cos(toRad(lat1))*Math.cos(toRad(lat2))*Math.sin(dLon/2)**2;
+  return Math.round(R*2*Math.atan2(Math.sqrt(a), Math.sqrt(1-a)));
+}
+function escapeHtml(str=''){
+  return String(str).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+function normalize(elements){
+  return (elements || []).map(el => {
+    if(el.type === 'way' && el.center) return {...el, lat: el.center.lat, lon: el.center.lon};
+    return el;
+  }).filter(el => typeof el.lat === 'number' && typeof el.lon === 'number');
+}
+function iconForCategory(cat){
+  return {food:'🍔',cafe:'☕',bar:'🍸',shop:'👨‍🍳',toilet:'🚻',smoke:'🚬',vending:'🥤',fuel:'⛽',pharmacy:'💊',bank:'🏦'}[cat] || '📍';
+}
+function labelForCategory(cat){
+  return {food:'Essen 🍔',cafe:'Cafés ☕',bar:'Bars 🍸',shop:'Lebensmittel 👨‍🍳',toilet:'Öffentliche Toiletten 🚻',smoke:'Zigaretten 🚬',vending:'Automaten 🥤',fuel:'Tankstellen ⛽',pharmacy:'Apotheken 💊',bank:'Banken 🏦'}[cat] || cat;
+}
+function buildAddress(tags={}){
+  const full = [tags['addr:full'], tags['contact:street']].filter(Boolean)[0];
+  if(full) return String(full).trim();
+  const streetLine = [tags['addr:street'], tags['addr:housenumber']].filter(Boolean).join(' ').trim();
+  const areaLine = [tags['addr:postcode'], tags['addr:city'] || tags['addr:place'] || tags['addr:suburb'] || tags['addr:district']].filter(Boolean).join(' ').trim();
+  const fallback = [streetLine, areaLine].filter(Boolean).join(', ').trim();
+  if(fallback) return fallback;
+  const placeFallback = [tags['addr:place'], tags['addr:suburb'], tags['addr:district'], tags['addr:city'], tags.place, tags.suburb].filter(Boolean).join(', ').trim();
+  return placeFallback || '';
+}
+function resolveAddressText(tags={}){
+  return buildAddress(tags) || 'Adresse wird live nachgeladen, falls im Kartenmaterial vorhanden.';
+}
+function resolveHoursText(tags={}){
+  const raw = String(tags.opening_hours || '').trim();
+  return raw ? localizeHours(raw) : 'Keine genauen Öffnungszeiten im Kartenmaterial hinterlegt.';
+}
+function likelyNightPharmacy(tags={}){
+  const txt = `${tags.name || ''} ${tags.description || ''} ${tags.note || ''} ${tags.operator || ''} ${tags.opening_hours || ''}`.toLowerCase();
+  const hours = String(tags.opening_hours || '').toLowerCase();
+  return hours.includes('24/7') || /notdienst|nacht|night/.test(txt) || /00:|01:|02:|03:|04:|05:/.test(hours);
+}
+
+function isLatePharmacyHour(date=new Date()){
+  const h = date.getHours();
+  return h >= 20 || h < 8;
+}
+function pharmacyRadiusPlan(baseRadius){
+  const base = Math.max(500, Number(baseRadius) || 3000);
+  const first = isLatePharmacyHour() ? Math.max(base, 8000) : base;
+  const plan = [first];
+  [8000, 15000].forEach(step => {
+    if(step > first && !plan.includes(step)) plan.push(step);
+  });
+  if(base > first && !plan.includes(base)) plan.unshift(base);
+  return [...new Set(plan)].sort((a,b)=>a-b);
+}
+function pharmacyStatusMessage(count, usedRadius, expanded){
+  const distLabel = usedRadius >= 1000 ? `${(usedRadius/1000).toFixed(usedRadius % 1000 === 0 ? 0 : 1)} km` : `${usedRadius} m`;
+  if(expanded) return `${count} geöffnete Apotheken gefunden · Radius automatisch auf ${distLabel} erweitert`;
+  if(isLatePharmacyHour()) return `${count} geöffnete Apotheken gefunden · Nachtdienst wird automatisch mitgedacht`;
+  return `${count} geöffnete Apotheken live aktualisiert`;
+}
+async function runSmartPharmacySearch(baseRadius, immediateItems=[]){
+  const plan = pharmacyRadiusPlan(baseRadius);
+  const byRadius = new Map();
+  if(Array.isArray(immediateItems) && immediateItems.length){
+    byRadius.set(plan[0], immediateItems);
+    if(immediateItems.length) return { items: immediateItems, usedRadius: plan[0], expanded: false };
+  }
+  for(const radius of plan){
+    if(!byRadius.has(radius)){
+      const live = await fetchLiveItems('pharmacy', radius);
+      const merged = mergeImmediateAndLive(immediateItems, live, 'pharmacy');
+      byRadius.set(radius, merged);
+    }
+    const items = byRadius.get(radius) || [];
+    if(items.length) return { items, usedRadius: radius, expanded: radius !== plan[0] };
+  }
+  return { items: [], usedRadius: plan[plan.length-1], expanded: plan.length > 1 };
+}
+function expandDays(dayExpr){
+  if(!dayExpr || dayExpr === '24/7') return [0,1,2,3,4,5,6];
+  const result = new Set();
+  dayExpr.split(',').map(s => s.trim()).forEach(part => {
+    if(!part) return;
+    if(part.includes('-')){
+      const [a,b] = part.split('-').map(s => s.trim());
+      if(!(a in DAY_MAP) || !(b in DAY_MAP)) return;
+      let cur = DAY_MAP[a], end = DAY_MAP[b];
+      result.add(cur);
+      while(cur !== end){
+        cur = (cur + 1) % 7;
+        result.add(cur);
+        if(result.size > 7) break;
+      }
+    } else if(part in DAY_MAP){
+      result.add(DAY_MAP[part]);
+    }
+  });
+  return Array.from(result);
+}
+function timeToMinutes(t){
+  const [h,m] = t.split(':').map(Number);
+  return h*60 + m;
+}
+function minutesToTime(m){
+  const mins = ((m % 1440) + 1440) % 1440;
+  return String(Math.floor(mins/60)).padStart(2,'0') + ':' + String(mins%60).padStart(2,'0');
+}
+function localizeHours(oh=''){
+  if(!oh) return 'Keine Öffnungszeiten hinterlegt.';
+  return oh.replaceAll('Tu','Di').replaceAll('We','Mi').replaceAll('Th','Do').replaceAll('Su','So').replaceAll(';',' · ');
+}
+
+function navModeLabel(mode){
+  return mode === 'bike' ? 'mit dem Fahrrad' : mode === 'drive' ? 'mit dem Auto' : 'zu Fuß';
+}
+function navSpeedKmh(mode){
+  return mode === 'bike' ? 15 : mode === 'drive' ? 28 : 4.8;
+}
+function estimateMinutesFromDistance(distanceMeters, mode){
+  const kmh = navSpeedKmh(mode);
+  return Math.max(1, Math.round((distanceMeters / 1000) / kmh * 60));
+}
+function formatDistance(distanceMeters){
+  return distanceMeters >= 1000
+    ? (distanceMeters/1000).toFixed(1).replace('.',',') + ' km'
+    : Math.round(distanceMeters) + ' m';
+}
+function routeLooksUnrealistic(distanceMeters, durationSeconds, mode){
+  if(!durationSeconds || durationSeconds <= 0) return true;
+  const kmh = (distanceMeters / 1000) / (durationSeconds / 3600);
+  if(mode === 'foot') return kmh < 2 || kmh > 7;
+  if(mode === 'bike') return kmh < 6 || kmh > 30;
+  if(mode === 'drive') return kmh < 5 || kmh > 90;
+  return false;
+}
+function updateExternalRouteLinks(item){
+  if(!item){
+    openMaps.href = '#';
+    openAppleMaps.href = '#';
+    return;
+  }
+  if(!userLoc || typeof userLoc.lat !== 'number' || typeof userLoc.lon !== 'number'){
+    openMaps.href = `https://www.google.com/maps/search/?api=1&query=${item.lat},${item.lon}`;
+    openAppleMaps.href = `https://maps.apple.com/?q=${encodeURIComponent(deriveDisplayName(item.tags || {}, categoryEl.value))}&ll=${item.lat},${item.lon}`;
+    return;
+  }
+  const travelmode = currentNavMode === 'bike' ? 'bicycling' : currentNavMode === 'drive' ? 'driving' : 'walking';
+  openMaps.href = `https://www.google.com/maps/dir/?api=1&origin=${userLoc.lat},${userLoc.lon}&destination=${item.lat},${item.lon}&travelmode=${travelmode}`;
+  const appleFlag = currentNavMode === 'drive' ? 'd' : currentNavMode === 'bike' ? 'd' : 'w';
+  openAppleMaps.href = `https://maps.apple.com/?saddr=${userLoc.lat},${userLoc.lon}&daddr=${item.lat},${item.lon}&dirflg=${appleFlag}`;
+}
+openMaps.addEventListener('click', ()=>{ if(selectedItem) registerPopularityHit(selectedItem, 'route', categoryEl.value); });
+openAppleMaps.addEventListener('click', ()=>{ if(selectedItem) registerPopularityHit(selectedItem, 'route', categoryEl.value); });
+
+function setNavMode(mode){
+  currentNavMode = mode;
+  document.getElementById('modeFoot').classList.toggle('active', mode === 'foot');
+  document.getElementById('modeBike').classList.toggle('active', mode === 'bike');
+  document.getElementById('modeDrive').classList.toggle('active', mode === 'drive');
+  if(selectedItem) {
+    updateExternalRouteLinks(selectedItem);
+    loadRoute(selectedItem);
+  }
+}
+function parseOpeningHours(oh=''){
+  if(!oh) return {known:false, isOpen:false, today:'Heute: unbekannt', next:'Öffnungszeiten unbekannt'};
+  const raw = oh.trim();
+  if(raw === '24/7'){
+    return {known:true,isOpen:true,today:'Heute: 24 Stunden geöffnet',next:'Bis 24:00 Uhr'};
+  }
+  const now = new Date();
+  const day = now.getDay();
+  const minsNow = now.getHours()*60 + now.getMinutes();
+  let todaySegments = [];
+  let isOpen = false;
+  let closesAt = null;
+
+  raw.split(';').map(s => s.trim()).filter(Boolean).forEach(segment => {
+    let dayPart = '', timePart = segment;
+    const match = segment.match(/^([A-Za-z,\-\s]+)\s+(.*)$/);
+    if(match){ dayPart = match[1].trim(); timePart = match[2].trim(); }
+    const days = dayPart ? expandDays(dayPart) : [0,1,2,3,4,5,6];
+    if(!days.includes(day)) return;
+    if(/off|closed|geschlossen/i.test(timePart)) return;
+    timePart.split(',').map(x => x.trim()).forEach(tp => {
+      const range = tp.match(/^(\d{1,2}:\d{2})-(\d{1,2}:\d{2})$/);
+      if(!range) return;
+      const start = timeToMinutes(range[1]);
+      const end = timeToMinutes(range[2]);
+      todaySegments.push(`${minutesToTime(start)}–${minutesToTime(end)}`);
+      if(end >= start){
+        if(minsNow >= start && minsNow <= end){
+          isOpen = true;
+          if(closesAt === null || end < closesAt) closesAt = end;
+        }
+      } else {
+        if(minsNow >= start || minsNow <= end){
+          isOpen = true;
+          const cmp = minsNow >= start ? end + 1440 : end;
+          if(closesAt === null || cmp < closesAt) closesAt = cmp;
+        }
+      }
+    });
+  });
+
+  return {
+    known: todaySegments.length > 0,
+    isOpen,
+    today: todaySegments.length ? `Heute: ${todaySegments.join(', ')}` : 'Heute: unbekannt',
+    next: isOpen && closesAt !== null ? `Bis ${minutesToTime(closesAt)} Uhr` : 'Gerade geöffnet'
+  };
+}
+function queryForCategory(cat, radius, lat, lon){
+  const around = `(around:${radius},${lat},${lon})`;
+  if(cat === 'food') return `
+    [out:json][timeout:25];
+    (
+      node["amenity"~"^(fast_food|restaurant|food_court)$"]${around};
+      way["amenity"~"^(fast_food|restaurant|food_court)$"]${around};
+    );
+    out center tags;`;
+  if(cat === 'cafe') return `
+    [out:json][timeout:25];
+    (
+      node["amenity"="cafe"]${around};
+      way["amenity"="cafe"]${around};
+      node["shop"="bakery"]["cafe"="yes"]${around};
+      way["shop"="bakery"]["cafe"="yes"]${around};
+    );
+    out center tags;`;
+  if(cat === 'bar') return `
+    [out:json][timeout:25];
+    (
+      node["amenity"~"^(bar|pub|biergarten)$"]${around};
+      way["amenity"~"^(bar|pub|biergarten)$"]${around};
+    );
+    out center tags;`;
+  if(cat === 'shop') return `
+    [out:json][timeout:25];
+    (
+      node["shop"~"^(supermarket|convenience)$"]${around};
+      way["shop"~"^(supermarket|convenience)$"]${around};
+    );
+    out center tags;`;
+  if(cat === 'smoke') return `
+    [out:json][timeout:25];
+    (
+      node["amenity"="vending_machine"]["vending"~"^(cigarettes|tobacco)$"]${around};
+      way["amenity"="vending_machine"]["vending"~"^(cigarettes|tobacco)$"]${around};
+    );
+    out center tags;`;
+  if(cat === 'fuel') return `
+    [out:json][timeout:25];
+    (
+      node["amenity"="fuel"]${around};
+      way["amenity"="fuel"]${around};
+    );
+    out center tags;`;
+  if(cat === 'toilet') return `
+    [out:json][timeout:25];
+    (
+      node["amenity"="toilets"]${around};
+      way["amenity"="toilets"]${around};
+    );
+    out center tags;`;
+  if(cat === 'pharmacy') return `
+    [out:json][timeout:25];
+    (
+      node["amenity"="pharmacy"]${around};
+      way["amenity"="pharmacy"]${around};
+      node["healthcare"="pharmacy"]${around};
+      way["healthcare"="pharmacy"]${around};
+    );
+    out center tags;`;
+  if(cat === 'night_pharmacy') return `
+    [out:json][timeout:25];
+    (
+      node["amenity"="pharmacy"]${around};
+      way["amenity"="pharmacy"]${around};
+      node["healthcare"="pharmacy"]${around};
+      way["healthcare"="pharmacy"]${around};
+    );
+    out center tags;`;
+  if(cat === 'bank') return `
+    [out:json][timeout:25];
+    (
+      node["amenity"~"^(bank|atm)$"]${around};
+      way["amenity"~"^(bank|atm)$"]${around};
+    );
+    out center tags;`;
+  return `
+    [out:json][timeout:25];
+    (
+      node["amenity"="vending_machine"]["vending"~"drink|beverage|coffee|snack|sweets|food"]${around};
+      way["amenity"="vending_machine"]["vending"~"drink|beverage|coffee|snack|sweets|food"]${around};
+      node["shop"="convenience"]["opening_hours"="24/7"]${around};
+      way["shop"="convenience"]["opening_hours"="24/7"]${around};
+    );
+    out center tags;`;
+}
+function updateThemeByArea(area){
+  const a = String(area || 'Stuttgart');
+  let badge = 'Stuttgart';
+  if(a.toLowerCase().includes('backnang')) badge = 'Backnang';
+  else if(a.toLowerCase().includes('cannstatt')) badge = 'Bad Cannstatt';
+  else if(a.toLowerCase().includes('feuerbach')) badge = 'Feuerbach';
+  else if(a.toLowerCase().includes('ost')) badge = 'Stuttgart-Ost';
+  else if(a.toLowerCase().includes('west')) badge = 'Stuttgart-West';
+  else if(a.toLowerCase().includes('vaihingen')) badge = 'Vaihingen';
+  areaBadge.textContent = badge;
+  locSub.textContent = badge;
+}
+
+async function detectArea(lat, lon){
+  const area = inferAreaFromCoords(lat, lon);
+  updateThemeByArea(area);
+}
+function inferAreaFromCoords(lat, lon){
+  if(lat > 48.94 && lon > 9.40) return 'Backnang';
+  if(lat > 48.80 && lat < 48.815 && lon > 9.205 && lon < 9.23) return 'Bad Cannstatt';
+  if(lat > 48.77 && lat < 48.79 && lon > 9.195) return 'Stuttgart-Ost';
+  if(lat > 48.77 && lat < 48.79 && lon < 9.17) return 'Stuttgart-West';
+  if(lat > 48.80 && lon < 9.17) return 'Feuerbach';
+  if(lat < 48.74 && lon < 9.13) return 'Vaihingen';
+  return 'Stuttgart';
+}
+async function getLocation(){
+  const cached = loadLastLocation();
+  if(cached){
+    userLoc = {lat: cached.lat, lon: cached.lon};
+    locMain.textContent = `${userLoc.lat.toFixed(5)}, ${userLoc.lon.toFixed(5)}`;
+    detectArea(userLoc.lat, userLoc.lon);
+  } else {
+    locMain.textContent = 'Standort wird geladen …';
+  }
+  if(!navigator.geolocation || typeof navigator.geolocation.getCurrentPosition !== 'function'){
+    if(cached){
+      summaryText.textContent = 'Live-Standort nicht verfügbar · letzter gespeicherter Standort aktiv';
+      return;
+    }
+    locMain.textContent = 'Standort nicht verfügbar';
+    summaryText.textContent = 'Dieses Gerät unterstützt keinen Standortzugriff.';
+    return;
+  }
+  try{
+    const pos = await new Promise((resolve,reject)=>
+      navigator.geolocation.getCurrentPosition(
+        resolve,
+        reject,
+        {enableHighAccuracy:true, timeout:7000, maximumAge:300000}
+      )
+    );
+    userLoc = {lat: pos.coords.latitude, lon: pos.coords.longitude};
+    saveLastLocation(userLoc);
+    locMain.textContent = `${userLoc.lat.toFixed(5)}, ${userLoc.lon.toFixed(5)}`;
+    await detectArea(userLoc.lat, userLoc.lon);
+    const help = document.getElementById('helpCard');
+    if(help) help.style.display = 'none';
+    prefetchNearbyCategories();
+  } catch(err){
+    if(cached){
+      summaryText.textContent = 'Zuletzt gespeicherter Standort aktiv';
+      return;
+    }
+    alert('Standort konnte nicht geladen werden. Bitte erlaube den Standortzugriff in Safari oder Chrome und versuche es dann noch einmal.');
+    locMain.textContent = 'Standort nicht verfügbar';
+    summaryText.textContent = 'Standort nicht verfügbar';
+  }
+}
+
+
+
+const OVERPASS_ENDPOINTS = [
+  'https://overpass-api.de/api/interpreter',
+  'https://lz4.overpass-api.de/api/interpreter',
+  'https://overpass.kumi.systems/api/interpreter'
+];
+
+const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+async function fetchJsonWithTimeout(url, options={}, timeoutMs=15000){
+  const controller = new AbortController();
+  const timer = setTimeout(()=>controller.abort(), timeoutMs);
+  try{
+    const res = await fetch(url, {
+      ...options,
+      signal: controller.signal,
+      cache: 'no-store'
+    });
+    return res;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+async function fetchOverpassFromEndpoint(endpoint, query, timeoutMs){
+  const bust = `${endpoint}${endpoint.includes('?') ? '&' : '?'}_=${Date.now()}`;
+  const res = await fetchJsonWithTimeout(bust, {
+    method:'POST',
+    headers:{
+      'Content-Type':'text/plain;charset=UTF-8',
+      'Accept':'application/json'
+    },
+    body:query,
+    mode:'cors'
+  }, timeoutMs);
+  if(!res.ok) throw new Error(`Overpass-Fehler ${res.status}`);
+  const json = await res.json();
+  if(!json || !Array.isArray(json.elements)) throw new Error('Ungültige Overpass-Antwort');
+  return json;
+}
+
+async function overpassRace(query, timeoutMs){
+  const attempts = OVERPASS_ENDPOINTS.map(endpoint =>
+    fetchOverpassFromEndpoint(endpoint, query, timeoutMs)
+  );
+  return Promise.any(attempts);
+}
+
+async function overpassRequest(query){
+  let lastError = null;
+  const rounds = [12000, 18000, 25000];
+  for(let i = 0; i < rounds.length; i++){
+    try{
+      return await overpassRace(query, rounds[i]);
+    } catch(err){
+      lastError = err;
+      if(i < rounds.length - 1) await sleep(700 * (i + 1));
+    }
+  }
+
+  const errors = lastError && lastError.errors ? lastError.errors : [lastError];
+  const hadTimeout = errors.some(err => err && err.name === 'AbortError');
+  const hadServerError = errors.some(err => err && /Overpass-Fehler/.test(String(err.message || '')));
+
+  if(hadTimeout){
+    throw new Error('Die Live-Suche war heute zu langsam. Ich habe mehrere Server probiert, aber keiner hat rechtzeitig geantwortet. Bitte versuche es gleich noch einmal oder reduziere den Radius auf 1000 m.');
+  }
+  if(hadServerError){
+    throw new Error('Die Live-Suche ist gerade stark ausgelastet. Bitte versuche es in ein paar Sekunden noch einmal.');
+  }
+  throw new Error('Die Live-Suche ist gerade nicht erreichbar. Bitte versuche es gleich noch einmal oder teste kurz WLAN statt 5G.');
+}
+
+function setSearching(isSearching){
+  searchBtn.disabled = !!isSearching;
+  searchBtn.style.pointerEvents = isSearching ? 'none' : 'auto';
+  searchBtn.style.opacity = isSearching ? '.75' : '1';
+  searchBtn.dataset.busy = isSearching ? '1' : '0';
+  searchBtn.textContent = isSearching ? 'Sucht …' : 'Suchen';
+}
+
+function renderError(message){
+  summaryText.textContent = 'Offline-Suche aktiv';
+  list.innerHTML = `<div class="empty">${escapeHtml(message)}</div>`;
+}
+
+function renderList(items, statusMessage=''){
+  currentItems = [...items];
+  if(statusMessage) summaryText.textContent = statusMessage;
+  else summaryText.textContent = `${currentItems.length} gerade geöffnete Orte in deiner Nähe`;
+  if(!currentItems.length){
+    list.innerHTML = `<div class="empty">Gerade ist hier nichts offen. Versuche es später noch einmal oder erweitere die Suche.</div>`;
+    return;
+  }
+
+  const featuredCount = Math.min(3, currentItems.length);
+  const featured = currentItems.slice(0, featuredCount);
+  const rest = currentItems.slice(featuredCount);
+
+  const renderCard = (item, idx, mode='default') => {
+    const tags = item.tags || {};
+    const analysis = analyzeItem(item, categoryEl.value, currentIntent);
+    const name = deriveDisplayName(tags, categoryEl.value);
+    const isHero = mode === 'featured' && idx === 0;
+    const topBadgeText = analysis.isSponsored ? 'Partner' : (isHero ? 'Beste Wahl' : (mode === 'featured' && analysis.badgeText === 'Empfohlen' ? 'Empfohlen' : analysis.badgeText));
+    const topBadgeClass = analysis.isSponsored ? 'partner' : (isHero ? 'best' : analysis.badgeClass);
+    const hoursText = analysis.parsed.next || 'Gerade geöffnet';
+    const quickReason = explainWhyShort(analysis);
+    const distanceText = formatSmartDistance(analysis.dist);
+    const hotBadge = analysis.popularity && analysis.popularity.isTrending ? '<div class="badge hot">Beliebt gerade</div>' : '';
+    const addressText = resolveAddressText(tags);
+    const hasAddress = !!buildAddress(tags);
+
+    return `
+      <article class="card ${analysis.isSponsored ? 'partner' : (isHero ? 'best' : '')}" data-idx="${idx}">
+        <div class="logo">${iconForCategory(categoryEl.value)}</div>
+        <div class="info">
+          <div class="row1">
+            <div class="name">${escapeHtml(name)}</div>
+            <div class="badge ${topBadgeClass}">${escapeHtml(topBadgeText)}</div>
+            ${hotBadge}
+          </div>
+          <div class="openLine">
+            <span class="openPulse"></span>
+            <span class="badge open">Jetzt geöffnet</span>
+            <span class="openText">${escapeHtml(hoursText)}</span>
+          </div>
+          <div class="addr ${hasAddress ? '' : 'missing'}">${escapeHtml(addressText)}</div>
+          <div class="hours">📍 <strong>${escapeHtml(distanceText)}</strong></div>
+          <div class="hours">🧠 Warum empfohlen: ${escapeHtml(quickReason)}</div>
+        </div>
+        <div class="chev">›</div>
+      </article>
+    `;
+  };
+
+  const renderPromoSlot = () => `
+    <div class="sectionTitle"><span class="miniDot"></span><span>Werbung in deiner Nähe</span></div>
+    <div class="adCard">
+      <div class="adIcon">📣</div>
+      <div class="adBody">
+        <div class="adLabel">Später Sponsor-Platz</div>
+        <div class="adTitle">Hier kann später ein lokaler Laden als Partner hervorgehoben werden</div>
+        <div class="adText">Unaufdringlich platziert, damit du später mit bezahlten Platzierungen Geld verdienen kannst, ohne die App zu nervig zu machen.</div>
+        <div class="adCta">Für Partner-Spots reserviert</div>
+      </div>
+    </div>
+  `;
+
+  const featuredHtml = featured.length ? `
+    <div class="sectionTitle"><span class="miniDot"></span><span>Beste offene Orte in deiner Nähe</span></div>
+    <div class="sectionHint strong">Nur Orte, die gerade geöffnet sind.</div>
+    ${featured.map((item, idx) => renderCard(item, idx, 'featured')).join('')}
+  ` : '';
+
+  const promoHtml = currentItems.length >= 3 ? renderPromoSlot() : '';
+
+  const restHtml = rest.length ? `
+    <div class="sectionTitle"><span class="miniDot"></span><span>Weitere geöffnete Orte in deiner Nähe</span></div>
+    ${rest.map((item, idx) => renderCard(item, idx + featured.length, 'default')).join('')}
+  ` : '';
+
+  list.innerHTML = featuredHtml + promoHtml + restHtml;
+  Array.from(list.querySelectorAll('.card')).forEach(card => {
+    card.addEventListener('click', () => openDetail(currentItems[Number(card.dataset.idx)]));
+  });
+}
+
+function renderImmediateResults(category, radius){
+  const immediate = getOfflineCandidates(category, radius);
+  currentItems = immediate;
+  if(immediate.length){
+    renderList(immediate, `${immediate.length} geöffnete Orte sofort geladen`);
+    return true;
+  }
+  return false;
+}
+
+async function fetchLiveItems(category, radius){
+  const query = queryForCategory(category, radius, userLoc.lat, userLoc.lon);
+  const json = await overpassRequest(query);
+  let items = normalize(json.elements || []);
+  if(category === 'smoke') items = mergeSmokeItems(items);
+  items = dedupeItems(filterCategoryItems(items, category));
+  items = sortAndLimit(items, category, 50);
+  saveCategoryCache(category, userLoc.lat, userLoc.lon, serializeForCache(items));
+  return items;
+}
+
+function mergeImmediateAndLive(immediateItems, liveItems, category){
+  const merged = dedupeItems(filterCategoryItems([...(liveItems || []), ...(immediateItems || [])], category));
+  return sortAndLimit(merged, category, 20);
+}
+
+let liveSearchSeq = 0;
+let autoSearchTimer = null;
+
+function scheduleAutoSearch(delay=120){
+  clearTimeout(autoSearchTimer);
+  autoSearchTimer = setTimeout(() => {
+    searchLive({background:false});
+  }, delay);
+}
+
+async function prefetchNearbyCategories(){
+  if(!userLoc) return;
+  const last = Number(localStorage.getItem(PREFETCH_STATE_KEY) || '0');
+  if(Date.now() - last < 10 * 60 * 1000) return;
+  localStorage.setItem(PREFETCH_STATE_KEY, String(Date.now()));
+  const cats = ['food','cafe','bar','shop','toilet','pharmacy','bank','smoke','vending','fuel'];
+  cats.forEach(cat => {
+    fetchLiveItems(cat, 2500).catch(()=>{});
+  });
+}
+
+
+
+async function searchLive(opts={}){
+  const { background=false } = opts;
+  const seq = ++liveSearchSeq;
+  let immediate = [];
+  let category = categoryEl.value;
+  let radius = Number(radiusEl.value);
+
+  try{
+    setSearching(true);
+    if(!userLoc) await getLocation();
+    if(seq !== liveSearchSeq) return;
+    if(!userLoc){
+      renderError('Standort nicht verfügbar. Bitte erlaube den Standortzugriff und versuche es erneut.');
+      return;
+    }
+
+    category = categoryEl.value;
+    radius = Number(radiusEl.value);
+    immediate = getOfflineCandidates(category, category === 'pharmacy' ? pharmacyRadiusPlan(radius)[0] : radius);
+    currentItems = immediate;
+
+    list.innerHTML = '';
+    if(immediate.length){
+      const initialMessage = category === 'pharmacy'
+        ? `${immediate.length} geöffnete Apotheken sofort geladen · Live wird aktualisiert …`
+        : `${immediate.length} geöffnete Orte sofort geladen · Live wird aktualisiert …`;
+      renderList(immediate, initialMessage);
+      const help = document.getElementById('helpCard'); if(help) help.style.display='none';
+      renderQuickLists();
+    } else {
+      summaryText.textContent = category === 'pharmacy' ? 'Suche nach offener Apotheke läuft …' : 'Suche läuft …';
+      renderSkeletons(3);
+    }
+
+    let merged = [];
+    let statusMessage = '';
+    if(category === 'pharmacy'){
+      const smart = await runSmartPharmacySearch(radius, immediate);
+      if(seq !== liveSearchSeq) return;
+      merged = smart.items;
+      radiusEl.value = String(smart.usedRadius);
+      statusMessage = pharmacyStatusMessage(merged.length, smart.usedRadius, smart.expanded);
+    } else {
+      const liveItems = await fetchLiveItems(category, radius);
+      if(seq !== liveSearchSeq) return;
+      merged = mergeImmediateAndLive(immediate, liveItems, category);
+      statusMessage = `${merged.length} geöffnete Orte live aktualisiert`;
+    }
+    currentItems = merged;
+    renderList(currentItems, statusMessage);
+    const help = document.getElementById('helpCard'); if(help) help.style.display='none';
+    renderQuickLists();
+  } catch(err){
+    if(seq !== liveSearchSeq) return;
+    const fallbackRadius = category === 'pharmacy' ? pharmacyRadiusPlan(radius).slice(-1)[0] : radius;
+    const fallback = immediate.length ? immediate : getOfflineCandidates(category, fallbackRadius);
+    currentItems = fallback;
+    if(fallback.length){
+      const offlineMessage = category === 'pharmacy'
+        ? pharmacyStatusMessage(fallback.length, fallbackRadius, fallbackRadius !== pharmacyRadiusPlan(radius)[0]).replace('live aktualisiert','offline geladen')
+        : `${fallback.length} geöffnete Orte offline geladen`;
+      renderList(fallback, offlineMessage);
+    } else {
+      renderError(err?.message || 'Unbekannter Fehler bei der Suche.');
+    }
+  } finally {
+    if(seq === liveSearchSeq) setSearching(false);
+  }
+}
+
+async function openDetail(item){
+  if(!item || typeof item.lat !== 'number' || typeof item.lon !== 'number') return;
+  selectedItem = item;
+  const tags = item.tags || {};
+  const analysis = analyzeItem(item, categoryEl.value, currentIntent);
+  const status = analysis.parsed;
+  const dist = userLoc ? haversine(userLoc.lat, userLoc.lon, item.lat, item.lon) : Math.round(analysis.dist || 0);
+  detailTitle.textContent = deriveDisplayName(tags, categoryEl.value);
+  detailMeta.textContent = `${buildAddress(tags)} · ${Math.max(0, Math.round(dist))} m`;
+  detailToday.textContent = status.today;
+  detailHours.textContent = resolveHoursText(tags);
+  detailWhy.textContent = analysis.isSponsored ? 'Partner-Spot: bezahlte Hervorhebung, aber nur wenn gerade geöffnet.' : `Empfohlen, weil es ${intentLabel(currentIntent)} ist.`;
+  detailWhyList.textContent = analysis.reasons.length ? `• ${analysis.reasons.join(' • ')}` : '• Passt insgesamt gut';
+  registerPopularityHit(item, 'open', categoryEl.value);
+  updatePaymentUi(item);
+  updateExternalRouteLinks(item);
+  miniMap.src = `https://www.openstreetmap.org/export/embed.html?bbox=${item.lon-0.003}%2C${item.lat-0.002}%2C${item.lon+0.003}%2C${item.lat+0.002}&layer=mapnik&marker=${item.lat}%2C${item.lon}`;
+  const smokeVisible = categoryEl.value === 'smoke';
+  document.getElementById('smokeDetailActions').style.display = smokeVisible ? 'flex' : 'none';
+  document.getElementById('smokeHint').style.display = smokeVisible ? 'block' : 'none';
+  pushRecent(item);
+  const favBtn = document.getElementById('favoriteBtn');
+  favBtn.textContent = '⭐ Favorit';
+  favBtn.onclick = () => {
+    const added = toggleFavorite(item);
+    favBtn.textContent = added ? '⭐ Gespeichert' : '⭐ Favorit';
+    renderQuickLists();
+  };
+  renderQuickLists();
+  detail.classList.add('show');
+  loadRoute(item);
+}
+let routeRequestSeq = 0;
+async function loadRoute(item){
+  if(!item || typeof item.lat !== 'number' || typeof item.lon !== 'number') return;
+  const seq = ++routeRequestSeq;
+  if(!userLoc || typeof userLoc.lat !== 'number' || typeof userLoc.lon !== 'number'){
+    routeStat.textContent = 'Route erst nach Standortfreigabe verfügbar';
+    routeNote.textContent = 'Bitte erlaube zuerst den Standortzugriff, damit die Route berechnet werden kann.';
+    updateExternalRouteLinks(item);
+    return;
+  }
+  try{
+    routeStat.textContent = 'Route wird berechnet …';
+    const profile = currentNavMode === 'bike' ? 'cycling' : currentNavMode === 'drive' ? 'driving' : 'walking';
+    const url = `https://router.project-osrm.org/route/v1/${profile}/${userLoc.lon},${userLoc.lat};${item.lon},${item.lat}?overview=false`;
+    const res = await fetchJsonWithTimeout(url, { method:'GET', mode:'cors' }, 9000);
+    if(seq !== routeRequestSeq || item !== selectedItem) return;
+    if(!res.ok) throw new Error('Routing nicht erreichbar');
+    const data = await res.json();
+    if(seq !== routeRequestSeq || item !== selectedItem) return;
+    const route = data.routes && data.routes[0];
+    if(!route) throw new Error('Keine Route gefunden');
+
+    const distMeters = route.distance || haversine(userLoc.lat, userLoc.lon, item.lat, item.lon);
+    const mins = routeLooksUnrealistic(distMeters, route.duration, currentNavMode)
+      ? estimateMinutesFromDistance(distMeters, currentNavMode)
+      : Math.max(1, Math.round(route.duration / 60));
+
+    routeStat.textContent = `${formatDistance(distMeters)} · ca. ${mins} Min. ${navModeLabel(currentNavMode)}`;
+    routeNote.textContent = `Route berechnet ${navModeLabel(currentNavMode)}. Falls deine Karten-App genauer ist, startet sie unten direkt mit Navigation.`;
+  } catch(e){
+    if(seq !== routeRequestSeq || item !== selectedItem) return;
+    const dist = haversine(userLoc.lat, userLoc.lon, item.lat, item.lon);
+    const mins = estimateMinutesFromDistance(dist, currentNavMode);
+    routeStat.textContent = `${formatDistance(dist)} · ca. ${mins} Min. ${navModeLabel(currentNavMode)}`;
+    routeNote.textContent = 'Live-Routing war gerade nicht erreichbar. Die Zeit ist deshalb eine realistische Schätzung.';
+  }
+}
+
+Array.from(document.querySelectorAll('[data-intent]')).forEach(btn => {
+  btn.addEventListener('click', () => {
+    currentIntent = btn.dataset.intent || 'balanced';
+    updateIntentUI();
+    if(currentItems.length){
+      currentItems = sortAndLimit(currentItems, categoryEl.value, 20);
+      renderList(currentItems, `${currentItems.length} Treffer · sortiert ${intentLabel(currentIntent)}`);
+    }
+    if(selectedItem && detail.classList.contains('show')) openDetail(selectedItem);
+  });
+});
+updateIntentUI();
+
+searchBtn.addEventListener('click', ()=>searchLive({background:false}));
+locateQuick.addEventListener('click', getLocation);
+document.getElementById('detailClose').addEventListener('click', ()=>detail.classList.remove('show'));
+detail.addEventListener('click', (e)=>{ if(e.target === detail) detail.classList.remove('show'); });
+document.getElementById('modeFoot').addEventListener('click', ()=>setNavMode('foot'));
+document.getElementById('modeBike').addEventListener('click', ()=>setNavMode('bike'));
+document.getElementById('modeDrive').addEventListener('click', ()=>setNavMode('drive'));
+document.getElementById('refreshRoute').addEventListener('click', ()=>{ if(selectedItem) loadRoute(selectedItem); });
+voteCardBtn.addEventListener('click', ()=>votePayment('card'));
+voteCashBtn.addEventListener('click', ()=>votePayment('cash'));
+
+document.getElementById('menuOpen').addEventListener('click', ()=>menu.classList.add('show'));
+document.getElementById('menuClose').addEventListener('click', ()=>menu.classList.remove('show'));
+document.getElementById('menuLocate').addEventListener('click', ()=>{menu.classList.remove('show'); getLocation();});
+document.getElementById('menuSearch').addEventListener('click', ()=>{menu.classList.remove('show'); searchLive({background:false});});
+
+// PWA-ish polish
+(function(){
+  const manifest = {
+    name: 'Find-It',
+    short_name: 'Find-It',
+    display: 'standalone',
+    background_color: '#103fbe',
+    theme_color: '#103fbe',
+    start_url: './',
+    icons: [
+      { src: "data:image/svg+xml;utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20180%20180'%3E%0A%3Cdefs%3E%0A%3ClinearGradient%20id='bg'%20x1='0'%20y1='0'%20x2='1'%20y2='1'%3E%0A%3Cstop%20offset='0'%20stop-color='%234fd6ff'/%3E%0A%3Cstop%20offset='0.45'%20stop-color='%232258d7'/%3E%0A%3Cstop%20offset='1'%20stop-color='%230a155f'/%3E%0A%3C/linearGradient%3E%0A%3ClinearGradient%20id='glass'%20x1='0'%20y1='0'%20x2='0'%20y2='1'%3E%0A%3Cstop%20offset='0'%20stop-color='rgba(255,255,255,.22)'/%3E%0A%3Cstop%20offset='1'%20stop-color='rgba(255,255,255,0)'/%3E%0A%3C/linearGradient%3E%0A%3Cfilter%20id='shadow'%20x='-20%25'%20y='-20%25'%20width='140%25'%20height='140%25'%3E%0A%3CfeDropShadow%20dx='0'%20dy='6'%20stdDeviation='8'%20flood-color='rgba(0,0,0,.28)'/%3E%0A%3C/filter%3E%0A%3C/defs%3E%0A%3Crect%20width='180'%20height='180'%20rx='40'%20fill='url(%23bg)'/%3E%0A%3Crect%20x='1'%20y='1'%20width='178'%20height='178'%20rx='39'%20fill='url(%23glass)'%20opacity='.35'/%3E%0A%3Cg%20filter='url(%23shadow)'%3E%0A%3Cpath%20d='M92%2034c-24%200-43%2018-43%2041%200%2026%2029%2047%2039%2072%202%205%209%205%2011%200%2010-25%2039-46%2039-72%200-23-19-41-46-41zm0%2057c-9%200-17-7-17-16s8-16%2017-16%2017%207%2017%2016-8%2016-17%2016z'%20fill='white'/%3E%0A%3Ccircle%20cx='118'%20cy='118'%20r='31'%20fill='none'%20stroke='white'%20stroke-width='10'/%3E%0A%3Cline%20x1='140'%20y1='140'%20x2='158'%20y2='158'%20stroke='white'%20stroke-width='10'%20stroke-linecap='round'/%3E%0A%3C/g%3E%0A%3C/svg%3E", sizes: '180x180', type: 'image/svg+xml', purpose: 'any' },
+      { src: "data:image/svg+xml;utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20180%20180'%3E%0A%3Cdefs%3E%0A%3ClinearGradient%20id='bg'%20x1='0'%20y1='0'%20x2='1'%20y2='1'%3E%0A%3Cstop%20offset='0'%20stop-color='%234fd6ff'/%3E%0A%3Cstop%20offset='0.45'%20stop-color='%232258d7'/%3E%0A%3Cstop%20offset='1'%20stop-color='%230a155f'/%3E%0A%3C/linearGradient%3E%0A%3ClinearGradient%20id='glass'%20x1='0'%20y1='0'%20x2='0'%20y2='1'%3E%0A%3Cstop%20offset='0'%20stop-color='rgba(255,255,255,.22)'/%3E%0A%3Cstop%20offset='1'%20stop-color='rgba(255,255,255,0)'/%3E%0A%3C/linearGradient%3E%0A%3Cfilter%20id='shadow'%20x='-20%25'%20y='-20%25'%20width='140%25'%20height='140%25'%3E%0A%3CfeDropShadow%20dx='0'%20dy='6'%20stdDeviation='8'%20flood-color='rgba(0,0,0,.28)'/%3E%0A%3C/filter%3E%0A%3C/defs%3E%0A%3Crect%20width='180'%20height='180'%20rx='40'%20fill='url(%23bg)'/%3E%0A%3Crect%20x='1'%20y='1'%20width='178'%20height='178'%20rx='39'%20fill='url(%23glass)'%20opacity='.35'/%3E%0A%3Cg%20filter='url(%23shadow)'%3E%0A%3Cpath%20d='M92%2034c-24%200-43%2018-43%2041%200%2026%2029%2047%2039%2072%202%205%209%205%2011%200%2010-25%2039-46%2039-72%200-23-19-41-46-41zm0%2057c-9%200-17-7-17-16s8-16%2017-16%2017%207%2017%2016-8%2016-17%2016z'%20fill='white'/%3E%0A%3Ccircle%20cx='118'%20cy='118'%20r='31'%20fill='none'%20stroke='white'%20stroke-width='10'/%3E%0A%3Cline%20x1='140'%20y1='140'%20x2='158'%20y2='158'%20stroke='white'%20stroke-width='10'%20stroke-linecap='round'/%3E%0A%3C/g%3E%0A%3C/svg%3E", sizes: '512x512', type: 'image/svg+xml', purpose: 'any maskable' }
+    ]
+  };
+  const blob = new Blob([JSON.stringify(manifest)], {type: 'application/manifest+json'});
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('link');
+  link.rel = 'manifest';
+  link.href = url;
+  document.head.appendChild(link);
+})();
+
+
+showSmokeControls();
+renderQuickLists();
+const bootLoc = loadLastLocation();
+if(bootLoc){
+  userLoc = {lat: bootLoc.lat, lon: bootLoc.lon};
+  updateLocationUi();
+  const bootItems = getOfflineCandidates(categoryEl.value, Number(radiusEl.value));
+  currentItems = bootItems;
+  if(bootItems.length){
+    renderList(bootItems, `${bootItems.length} Treffer sofort geladen`);
+  } else {
+    renderSkeletons(3);
+  }
+} else {
+  renderSkeletons(3);
+}
+getLocation().then(()=>{}).catch(()=>{});
+categoryEl.addEventListener('change', ()=>{
+  showSmokeControls();
+  detail.classList.remove('show');
+  selectedItem = null;
+  routeRequestSeq++;
+  renderQuickLists();
+  scheduleAutoSearch(50);
+});
+radiusEl.addEventListener('change', ()=>{
+  detail.classList.remove('show');
+  selectedItem = null;
+  routeRequestSeq++;
+  renderQuickLists();
+  scheduleAutoSearch(50);
+});
+document.getElementById('addSmokeHereBtn').addEventListener('click', addSmokeAtCurrentLocation);
+document.getElementById('clearSmokeBtn').addEventListener('click', clearSavedSmoke);
+document.getElementById('confirmSmokeBtn').addEventListener('click', confirmSelectedSmoke);
+document.getElementById('removeSmokeBtn').addEventListener('click', removeSelectedSmoke);
+
+
+const aboutModal = document.getElementById('aboutModal');
+const privacyModal = document.getElementById('privacyModal');
+
+document.getElementById('menuAbout').addEventListener('click', ()=>{
+  menu.classList.remove('show');
+  aboutModal.classList.add('show');
+});
+document.getElementById('menuPrivacy').addEventListener('click', ()=>{
+  menu.classList.remove('show');
+  privacyModal.classList.add('show');
+});
+document.getElementById('aboutClose').addEventListener('click', ()=>aboutModal.classList.remove('show'));
+document.getElementById('privacyClose').addEventListener('click', ()=>privacyModal.classList.remove('show'));
+aboutModal.addEventListener('click', e=>{ if(e.target===aboutModal) aboutModal.classList.remove('show'); });
+privacyModal.addEventListener('click', e=>{ if(e.target===privacyModal) privacyModal.classList.remove('show'); });
+
+window.addEventListener('error', (event) => {
+  console.error(event.error || event.message);
+  if(summaryText) summaryText.textContent = 'Es gab einen Fehler. Bitte suche erneut.';
+  if(routeStat && detail.classList.contains('show') && selectedItem){
+    routeStat.textContent = 'Route gerade nicht verfügbar';
+    routeNote.textContent = 'Du kannst den Ort trotzdem direkt in deiner Karten-App öffnen.';
+    updateExternalRouteLinks(selectedItem);
+  }
+  setSearching(false);
+});
+window.addEventListener('unhandledrejection', (event) => {
+  console.error(event.reason);
+  if(summaryText) summaryText.textContent = 'Eine Anfrage ist fehlgeschlagen. Offline-Treffer bleiben sichtbar.';
+  setSearching(false);
+});
+
+</script>
+
+<div class="detail" id="aboutModal">
+  <div class="panel">
+    <div class="handlewrap"><div class="handle"></div></div>
+    <div class="head">
+      <div class="headtop">
+        <div>
+          <div class="detailtitle">Über die App</div>
+          <div class="meta">Jetzt offen · Testversion</div>
+        </div>
+        <button class="close" id="aboutClose" type="button">×</button>
+      </div>
+    </div>
+    <div class="body2">
+      <div class="box">
+        <div class="boxtitle">Was die App macht</div>
+        <div class="line">Die App zeigt dir offene Orte in deiner Nähe, zum Beispiel Essen, Cafés, Bars, Lebensmittel, öffentliche Toiletten, Zigarettenautomaten und Automaten-Shops. Du kannst Treffer öffnen, die Wegbeschreibung starten und lokale Zigarettenautomaten bestätigen oder ausblenden.</div>
+      </div>
+      <div class="box">
+        <div class="boxtitle">Für wen die App gedacht ist</div>
+        <div class="line">Die App ist für den schnellen mobilen Gebrauch gedacht: Standort laden, Kategorie wählen, suchen, antippen, loslaufen.</div>
+      </div>
+      <div class="box">
+        <div class="boxtitle">Datenquellen</div>
+        <div class="line">Orte und Öffnungszeiten kommen aus Live-Kartendaten. Wegbeschreibungen werden über externe Kartendienste geöffnet. Lokal bestätigte Zigarettenautomaten werden nur auf diesem Gerät gespeichert.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="detail" id="privacyModal">
+  <div class="panel">
+    <div class="handlewrap"><div class="handle"></div></div>
+    <div class="head">
+      <div class="headtop">
+        <div>
+          <div class="detailtitle">Datenschutz</div>
+          <div class="meta">Kurz und verständlich</div>
+        </div>
+        <button class="close" id="privacyClose" type="button">×</button>
+      </div>
+    </div>
+    <div class="body2">
+      <div class="box">
+        <div class="boxtitle">Standort</div>
+        <div class="line">Dein Standort wird nur genutzt, um Treffer in deiner Nähe zu suchen und Routen zu berechnen. Die App speichert deinen Standort nicht dauerhaft auf einem eigenen Server.</div>
+      </div>
+      <div class="box">
+        <div class="boxtitle">Lokal gespeicherte Daten</div>
+        <div class="line">Favoriten, zuletzt geöffnete Orte und lokal bestätigte oder entfernte Zigarettenautomaten werden nur auf deinem Gerät gespeichert.</div>
+      </div>
+      <div class="box">
+        <div class="boxtitle">Externe Dienste</div>
+        <div class="line">Für Kartendaten, Ortssuche und Wegbeschreibung werden externe Kartendienste genutzt. Beim Öffnen externer Navigation gelten zusätzlich deren Datenschutzregeln.</div>
+      </div>
+      <div class="box">
+        <div class="boxtitle">Wichtig vor Veröffentlichung</div>
+        <div class="line">Vor einer echten App-Store-Veröffentlichung solltest du zusätzlich noch eine vollständige Datenschutzseite mit Name, Kontakt und genauer Beschreibung aller genutzten Dienste hinterlegen.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+(function(){
+  const menu = document.getElementById('menu');
+  const menuAbout = document.getElementById('menuAbout');
+  const menuPrivacy = document.getElementById('menuPrivacy');
+  const aboutModal = document.getElementById('aboutModal');
+  const privacyModal = document.getElementById('privacyModal');
+  const aboutClose = document.getElementById('aboutClose');
+  const privacyClose = document.getElementById('privacyClose');
+
+  function show(el){ if(el) el.classList.add('show'); }
+  function hide(el){ if(el) el.classList.remove('show'); }
+
+  if(menuAbout && aboutModal){
+    menuAbout.addEventListener('click', function(){
+      hide(menu);
+      show(aboutModal);
+    });
+  }
+
+  if(menuPrivacy && privacyModal){
+    menuPrivacy.addEventListener('click', function(){
+      hide(menu);
+      show(privacyModal);
+    });
+  }
+
+  if(aboutClose && aboutModal){
+    aboutClose.addEventListener('click', function(){ hide(aboutModal); });
+  }
+
+  if(privacyClose && privacyModal){
+    privacyClose.addEventListener('click', function(){ hide(privacyModal); });
+  }
+
+  if(aboutModal){
+    aboutModal.addEventListener('click', function(e){
+      if(e.target === aboutModal) hide(aboutModal);
+    });
+  }
+
+  if(privacyModal){
+    privacyModal.addEventListener('click', function(e){
+      if(e.target === privacyModal) hide(privacyModal);
+    });
+  }
+})();
+</script>
+
+
+
+<script>
+(function(){
+  const bg = document.getElementById('bgParallax');
+  if(!bg) return;
+  let ticking = false;
+
+  function updateParallax(){
+    const y = window.scrollY || window.pageYOffset || 0;
+    const offset = Math.min(34, y * 0.18);
+    bg.style.transform = `translate3d(0, ${offset}px, 0) scale(1.03)`;
+    ticking = false;
+  }
+
+  function onScroll(){
+    if(!ticking){
+      requestAnimationFrame(updateParallax);
+      ticking = true;
+    }
+  }
+
+  updateParallax();
+  window.addEventListener('scroll', onScroll, { passive:true });
+})();
+
+(function(){
+  const splash = document.getElementById('splashScreen');
+  const hideSplash = ()=>{
+    if(!splash) return;
+    splash.classList.add('hide');
+    document.body.classList.remove('splash-lock');
+    setTimeout(()=>splash.remove(), 450);
+  };
+  window.addEventListener('load', ()=>setTimeout(hideSplash, 700), {once:true});
+  setTimeout(hideSplash, 2600);
+})();
+</script>
+
+
+</body>
+</html>
